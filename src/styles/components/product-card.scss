@@ -16,13 +16,7 @@
         left: 0;
         width: 100%;
         height: auto;
-        transition: opacity 0.5s ease-in-out;
-          &.image-first{
-            opacity: 1;
-          }
-          &.image-last{
-            opacity: 0; 
-          }
+        transition: src 0.5s ease-in-out;
         }
       &:hover {
         .image-first {

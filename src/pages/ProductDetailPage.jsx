@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Products from '../data/Products.json';
 /* components */
@@ -80,26 +80,32 @@ const ProductDetailPage = () => {
   ];
 
   // 스크롤 방향에 따른 내비게이션 top 변경
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset; // 현재 스크롤 위치
+  const handleScroll = useCallback(() => {
+    const currentScrollPos = window.pageYOffset;
 
     if (currentScrollPos > prevScrollPos) {
-      setScrollingDown(true); // 아래로 스크롤
+      setScrollingDown(true);
     } else {
-      setScrollingDown(false); // 위로 스크롤
+      setScrollingDown(false);
     }
-    setPrevScrollPos(currentScrollPos); // 이전 스크롤 위치 업데이트
+    setPrevScrollPos(currentScrollPos);
 
-    // 섹션 위치 확인하여 active 클래스 부여
     const sections = document.querySelectorAll('.sec-01, .sec-02, .sec-03, .sec-04');
     sections.forEach((section) => {
       const rect = section.getBoundingClientRect();
-      // 화면에 섹션이 50% 이상 보이면 active 클래스를 추가
       if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
         setActiveSection(section.id);
       }
     });
-  };
+  }, [prevScrollPos]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
 
   // 스크롤 이벤트 리스너 추가
   useEffect(() => {

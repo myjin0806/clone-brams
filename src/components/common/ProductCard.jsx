@@ -5,20 +5,20 @@ import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
-  const { id,name, images, description, price, isBest, isSale, isNew } = product;
+  const { id, name, images, description, price, isBest, isSale, isNew } = product;
   const [liked, setLiked] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleLike = () => setLiked(!liked);
 
   const handleMouseEnter = () => {
     if (images && images.length > 1) {
-      setImageIndex(images.length - 1); // 마지막 이미지로 변경
+      setCurrentImageIndex(images.length - 1);
     }
   };
 
   const handleMouseLeave = () => {
-    setImageIndex(0); // 첫 번째 이미지로 변경
+    setCurrentImageIndex(0); 
   };
 
   const formattedPrice = price ? price.toLocaleString() : '가격 미제공';
@@ -32,8 +32,7 @@ const ProductCard = ({ product }) => {
           onMouseLeave={handleMouseLeave}
         >
           <div className="image-container">
-            <img src={`/images/${images[0]}`} alt={name} className="image image-first" />
-            {images.length > 1 && <img src={`/images/${images[images.length - 1]}`} alt={name} className="image image-last" />}
+            <img src={`/images/${images[currentImageIndex]}`} alt={name} className="image" />
           </div>
         </div>
         <div className="product-desc">
