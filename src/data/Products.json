@@ -1,0 +1,406 @@
+[
+  {"id":1,
+  "type":"안마의자",
+  "name": "안마의자 골든이글 (BRAMS-S8800)",
+  "description":"다양한 마사지 모드로 피로를 풀어주는 골든이글 안마의자.",
+  "price": 3280000,
+  "isBest":false,
+  "isNew":true,
+  "isSale":false,
+  "images":[
+    "01.jpg",
+    "06.jpg",
+    "04.png",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":2,
+  "type":"안마의자",
+  "name": "안마의자 빅토리아 (BRAMS-S7700)",
+  "description":"고급스러운 디자인과 맞춤형 마사지로 피로를 풀어주는 안마의자.",
+  "price": 3280000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "02.jpg",
+    "04.png",
+    "09.jpg",
+    "12.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":3,
+  "type":"안마의자",
+  "name": "안마의자 엘토 (BRAMS-S7300)",
+  "description":"스마트한 마사지 기능으로 편안한 휴식을 선사하는 안마의자.",
+  "price": 2880000,
+  "isBest":true,
+  "isNew":false,
+  "isSale":true,
+  "images":[
+    "03.png",
+    "02.jpg",
+    "09.jpg",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":4,
+  "type":"안마의자",
+  "name": "안마의자 루카S (BRAMS-S3800)",
+  "description":"심플하고 세련된 디자인, 강력한 마사지 성능을 자랑하는 안마의자.",
+  "price": 3080000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":true,
+  "images":[
+    "04.png",
+    "01.jpg",
+    "05.png",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":5,
+  "type":"안마의자",
+  "name": "안마의자 카밀라 (BRAMS-A3939)",
+  "description":"다양한 마사지 모드와 휴식을 제공하는 안마의자.",
+  "price": 3380000,
+  "isBest":false,
+  "isNew":true,
+  "isSale":true,
+  "images":[
+    "05.png",
+    "04.png",
+    "07.jpg",
+    "12.jpg"
+  ],
+  "color":[
+    "BROWN 갈색",
+    "BLACK 검은색"
+  ],
+  "detail":"detail_img.jpg"
+  },
+  {"id":6,
+  "type":"안마의자",
+  "name": "안마의자 아미-네스 (BRAMS-S300)",
+  "description":"소형 디자인으로 작은 공간에서도 편안한 안마를 즐길 수 있는 안마의자.",
+  "price": 2580000,
+  "isBest":true,
+  "isNew":false,
+  "isSale":true,
+  "images":[
+    "06.jpg",
+    "02.jpg",
+    "10.jpg",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":7,
+  "type":"안마의자",
+  "name": "리클라이닝 하우징 소파 (K6B00MA)",
+  "description":"편안한 리클라이닝 기능으로 휴식과 여유를 제공합니다.",
+  "price": 2580000,
+  "isBest":true,
+  "isNew":false,
+  "isSale":true,
+  "images":[
+    "07.jpg",
+    "01.jpg",
+    "03.png",
+    "12.jpg"
+  ],
+  "color":[
+    "MINT 민트",
+    "CREAM 크림색",
+    "GRAY 그레이"
+  ],
+  "detail":"detail_img.jpg"
+  },
+  {"id":8,
+  "type":"안마의자",
+  "name": "골든이글 바이오 (K8I722NC)",
+  "description":"소형 디자인으로 작은 공간에서도 편안한 안마를 즐길 수 있는 안마의자.",
+  "price": 2580000,
+  "isBest":true,
+  "isNew":true,
+  "isSale":true,
+  "images":[
+    "08.png",
+    "02.jpg",
+    "03.png",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":9,
+  "type":"안마의자",
+  "name": "안마의자 울트라 (S2_K7G888IU)",
+  "description":"강력한 마사지 기능과 세련된 디자인을 겸비한 프리미엄 안마의자.",
+  "price": 3480000,
+  "isBest":false,
+  "isNew":true,
+  "isSale":true,
+  "images":[
+    "09.jpg",
+    "01.jpg",
+    "06.jpg",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":10,
+  "type":"안마의자",
+  "name": "안마의자 골든이글 라인",
+  "description":"다양한 기능과 스타일리시한 디자인의 골든이글 라인 안마의자.",
+  "price": 3780000,
+  "isBest":true,
+  "isNew":false,
+  "isSale":true,
+  "images":[
+    "10.jpg",
+    "09.jpg",
+    "03.png",
+    "12.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":11,
+  "type":"소형마사지기",
+  "name": "(세트상품) 마사지기 세트",
+  "description":"휴대가 간편하고 다양한 부위에 사용할 수 있는 소형 마사지기들로 구성된 세트입니다.",
+  "price": 338700,
+  "isBest":false,
+  "isNew":false,
+  "isSale":true,
+  "images":[
+    "13.jpg",
+    "13.jpg",
+    "13.jpg",
+    "13.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":12,
+  "type":"소형마사지기",
+  "name": "어깨척 BM-103",
+  "description":"어깨와 목 부위를 집중적으로 마사지하여 피로를 풀어주는 휴대용 마사지기입니다.",
+  "price": 112900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "14.jpg",
+    "14.jpg",
+    "14.jpg",
+    "14.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":13,
+  "type":"소형마사지기",
+  "name": "무릎탁 BM-J005",
+  "description":"무릎과 하체 부위의 혈액순환을 도와주는 마사지기로, 편안한 사용감과 효과적인 피로 회복을 제공합니다.",
+  "price": 145900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "15.jpg",
+    "15.jpg",
+    "15.jpg",
+    "15.jpg"
+  ],
+  "color":[
+    "GOLD 금색",
+    "SILVER 은색"
+  ],
+  "detail":"detail_img.jpg"
+  },
+  {"id":14,
+  "type":"소형마사지기",
+  "name": "림프건 BM-1600",
+  "description":"림프 순환을 촉진시켜 몸의 부기를 줄이고 피로를 풀어주는 고급 마사지기입니다.",
+  "price": 136900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "16.jpg",
+    "16.jpg",
+    "16.jpg",
+    "16.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":101,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 골든이글 (BRAMS-S8800)",
+  "description":"골든이글의 렌탈서비스입니다.",
+  "price": 112900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "01.jpg",
+    "06.jpg",
+    "04.png",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":102,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 빅토리아 (BRAMS-S7700)",
+  "description":"빅토리아의 렌탈서비스입니다.",
+  "price": 120900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "02.jpg",
+    "04.png",
+    "09.jpg",
+    "12.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":103,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 엘토 (BRAMS-S7300)",
+  "description":"엘토의 렌탈서비스 입니다.",
+  "price": 71900,
+  "isBest":true,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "03.png",
+    "02.jpg",
+    "09.jpg",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":104,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 루카S (BRAMS-S3800)",
+  "description":"루카S의 렌탈서비스입니다.",
+  "price": 76900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":true,
+  "images":[
+    "04.png",
+    "01.jpg",
+    "05.png",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":105,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 카밀라 (BRAMS-A3939)",
+  "description":"카밀라의 렌탈서비스입니다.",
+  "price": 119000,
+  "isBest":false,
+  "isNew":true,
+  "isSale":true,
+  "images":[
+    "05.png",
+    "04.png",
+    "07.jpg",
+    "12.jpg"
+  ],
+  "color":[
+    "BROWN 갈색",
+    "BLACK 검은색"
+  ],
+  "detail":"detail_img.jpg"
+  },
+  {"id":106,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 아미-네스 (BRAMS-S300)",
+  "description":"아미-네스의 렌탈서비스입니다.",
+  "price": 97000,
+  "isBest":true,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "06.jpg",
+    "02.jpg",
+    "10.jpg",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":107,
+  "type":"렌탈",
+  "name": "[렌탈]골든이글 바이오 (K8I722NC)",
+  "description":"골든이글 라인 바이오의 렌탈서비스입니다.",
+  "price": 198000,
+  "isBest":true,
+  "isNew":true,
+  "isSale":true,
+  "images":[
+    "08.png",
+    "02.jpg",
+    "03.png",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":108,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 울트라 (S2_K7G888IU)",
+  "description":"울트라의 렌탈서비스입니다.",
+  "price": 149000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "09.jpg",
+    "01.jpg",
+    "06.jpg",
+    "11.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":109,
+  "type":"렌탈",
+  "name": "[렌탈]안마의자 골든이글 라인",
+  "description":"골든이글 라인의 렌탈서비스입니다",
+  "price": 120000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "10.jpg",
+    "09.jpg",
+    "03.png",
+    "12.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  }
+]

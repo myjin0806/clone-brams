@@ -1,0 +1,41 @@
+@import '../common/variables.scss';
+
+.recommend{
+  position: relative;
+  width: 100%;
+  height: 780px;
+  background: url('/../public/images/recommend_banner.jpg') no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  margin-top: 180px;
+  .recommend-title{
+    position: absolute;
+    left: 50%;
+    top: 75px;
+    transform: translateX(-50%);
+    text-align: center;
+    p{
+      color: $gold;
+      font-size: 22px;
+      font-family: $primary-en;
+    }
+    h2{
+      font-size: 40px;
+      font-weight: 600;
+      margin: 12px 0 40px 0;
+    }
+    a{
+      color: $silver-black;
+      position: relative;
+      &::after{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: $silver-black;
+        bottom: -5px;
+        left: 0;
+      }
+    }
+  }
+}

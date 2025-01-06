@@ -1,0 +1,52 @@
+@import '../common/variables.scss';
+
+.rental-service{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 180px;
+  .rental-left{
+    width: 49.375%;
+    position: sticky;
+    top: 0; // sticky 동작 설정
+    height: 100vh; // 뷰포트에 맞게 높이 설정
+    overflow: hidden;
+    img{
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .text{
+      color: white;
+      position: absolute;
+      bottom: 90px;
+      left: 90px;
+      h2{
+        font-size: 40px;
+        font-weight: 400;
+        font-family: $primary-en;
+      }
+      p{
+        margin-top: 8px;
+        font-size: 20px;
+        line-height: 1.5;
+      }
+    }
+  }
+  .rental-right{
+    width: 50.625%;
+    background-color: #F4F1EA;
+    padding: 160px 120px 160px 100px;
+    .title-container{
+      h2{
+        text-align: left;
+      }
+    }
+    .rental-products{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 64px 24px;
+    }
+  }
+}

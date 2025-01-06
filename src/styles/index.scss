@@ -1,0 +1,41 @@
+/* Import variables first */
+@import './common/variables.scss';
+
+/* Import reset */
+@import './common/reset.scss';
+
+/* Common styles */
+@import './components/header.scss';
+@import './components/floating-menu.scss';
+@import './components/footer.scss';
+@import './components/title.scss';
+@import './components/product-card.scss';
+
+/* Main styles */
+@import './main/main-visual.scss';
+@import './main/main-buttons.scss';
+@import './main/mds-pick.scss';
+@import './main/recommend.scss';
+@import './main/brams-story.scss';
+@import './main/rental-service.scss';
+@import './main/care-service.scss';
+@import './main/main-banner.scss';
+@import './main/experience-store.scss';
+@import './main/community-banner.scss';
+
+/* pages Style */
+@import './pages/products-page.scss';
+@import './pages/productdetail-page.scss';
+@import './pages/login-page.scss';
+@import './pages/cart-page.scss';
+
+/* Sub styles */
+@import './sub/about-us.scss';
+@import './sub/works.scss';
+@import './sub/history.scss';
+@import './sub/location.scss';
+
+/* 
+  이거 넣기
+  @import '../variables.scss';
+*/

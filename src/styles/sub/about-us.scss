@@ -1,0 +1,21 @@
+@import '../common/variables.scss';
+
+.about-us{
+  margin-top: 180px;
+  h2{
+    font-size: 80px;
+    font-family: $primary-en;
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+  p{
+    font-size: 18px;
+    line-height: 1.5;
+    &:last-child{
+      padding-left: 46.875%;
+    }
+  }
+  img{
+    padding: 40px 0 48px;
+  }
+}

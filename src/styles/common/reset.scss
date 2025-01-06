@@ -1,0 +1,34 @@
+@import 'variables.scss';
+
+/* fonts */
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body, a, button{
+  font-family: $primary-kr;
+  color: $dark-black;
+}
+a{
+  text-decoration: none;
+}
+button{
+  cursor: pointer;
+}
+ul, li{
+  list-style: none;
+}
+body{
+  position: relative;
+  min-width: 1600px;
+}
+.inner{
+  width: 1600px;
+  margin: 0 auto;
+}

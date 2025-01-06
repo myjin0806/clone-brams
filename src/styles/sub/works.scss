@@ -1,0 +1,42 @@
+@import '../common/variables.scss';
+
+.works{
+  .works-wrap{
+    margin: 140px 0 180px;
+    .head-text{
+      h2{
+        font-size: 80px;
+        font-family: $primary-en;
+        font-weight: 300;
+        margin-bottom: 40px;
+        padding-left: 46.875%;
+      }
+      p{
+        padding-left: 46.875%;
+        margin-bottom: 40px;
+      }
+    }
+    .img-box{
+      display: flex;
+      gap: 40px;
+      position: relative;
+      div{
+        img{
+          width: 100%;
+        }
+        &:nth-child(2){
+          img{
+            transform: translateY(100%);
+          }
+        }
+      }
+      p{
+        font-size: 18px;
+        line-height: 1.5;
+        position: absolute;
+        bottom: 24px;
+        left: 0;
+      }
+    }
+  }
+}

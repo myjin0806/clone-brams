@@ -1,0 +1,77 @@
+@import '../common/variables.scss';
+
+.login-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 143px;
+  margin-bottom: 180px;
+  .login-wrap{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    .login{
+      border-bottom: 1px solid #e4e4e4;
+      input{
+        width: 100%;
+        height: 56px;
+        line-height: 1;
+        font-size: 14px;
+        margin: 10px 0 0 0;
+        color: #1D1D1D;
+        box-sizing: border-box;
+        border: none;
+        padding: 0 0 0 24px;
+        background: #fbfaf8;
+        &:focus{
+          outline: none;
+        }
+      }
+      .login-btn{
+        width: 100%;
+        margin: 32px 0 0;
+        padding: 20px 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        background-color: black;
+        border: none;
+      }
+      .login-menu{
+        margin: 24px 0 48px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        a{
+          font-size: 14px;
+          color: #555;
+          position: relative;
+          &::after{
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background-color: #555;
+            right: -10px;
+          }
+          &:last-child::after{
+            display: none;
+          }
+        }
+      }
+    }
+    .not-user-order{
+      button{
+        width: 100%;
+        margin: 32px 0 0;
+        padding: 20px 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: black;
+        background-color: white;
+        border: 1px solid #e4e4e4;
+      }
+    }
+  }
+}

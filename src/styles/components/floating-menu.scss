@@ -1,0 +1,40 @@
+@import '../common/variables.scss';
+
+.floating-menu{
+  z-index: 100;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  transition: .3s;
+  .menu-items{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    &.visible{
+      opacity: 1;
+      visibility: visible;
+    }
+    li{
+      margin: 10px 0;
+      img{
+        width: 56px;
+        height: 56px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        &:hover{
+          transform: scale(1.1);
+        }
+      }
+      button{
+        background-color: transparent;
+        border: none;
+        &:hover{
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

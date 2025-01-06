@@ -1,0 +1,214 @@
+@import '../common/variables.scss';
+
+.cart-page{
+  margin: 170px 0;
+  .cart-inner{
+    .order-wrap{
+      .order-menu{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        background-color: $light-gray;
+        margin-bottom: 20px;
+        li{
+          height: 50px;
+          line-height: 50px;
+          min-width: 187px;
+          text-align: center;
+          a{
+            font-size: 14px;
+          }
+          &.active{
+            background-color: white;
+            border-bottom: 1px solid $gold;
+            a{
+              color: $gold;
+            }
+          }
+        }
+      }
+      .order-table{
+        border-top: 1px solid black;
+        width: 100%;
+        thead{
+          tr{
+            th{
+              height: 60px;
+              border-bottom: 1px solid #e4e4e4;
+              font-size: 14px;
+              font-weight: 500;
+              color: #1d1d1d;
+              vertical-align: middle;
+            }
+          }
+        }
+        tbody{
+          tr{
+            td{
+              padding: 28px 0;
+              border-bottom: 1px solid #e4e4e4;
+              font-size: 14px;
+              font-weight: 500;
+              color: #1d1d1d;
+              vertical-align: middle;
+              word-break: break-all;
+              word-wrap: break-word;
+              text-align: center;
+              &.name{
+                text-align: left;
+              }
+              &.amount{
+                input{
+                  width: 22px;
+                  height: 23px;
+                  padding: 0 0 0 5px;
+                  line-height: 25px;
+                  border: 1px solid #d4d8d9;
+                  border-radius: 3px 0 0 3px;
+                }
+              }
+              &.select-btn{
+                display: flex;
+                flex-direction: column;
+                button{
+                  width: 80%;
+                  padding: 8.5px 0;
+                  background-color: white;
+                  color: $light-black;
+                  border: 1px solid $light-black;
+                  margin-bottom: 4px;
+                  &:first-child{
+                    background-color: black;
+                    color: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+        tfoot{
+          tr{
+            td{
+              padding: 10px 0;
+              border-bottom: 1px solid #e4e4e4;
+            }
+          }
+        }
+      }
+      .oreder-guide{
+        padding: 8px 0 8px 33px;
+        border-bottom: 1px solid #e8e5e4;
+        color: #757575;
+        line-height: 1.5;
+        font-size: 11px;
+        background: url('../../../public/images/ico_info.gif') no-repeat 9px 8px;
+      }
+      .order-selecter{
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        margin: 0 0 40px;
+        p{
+          font-size: 13px;
+          font-weight: 500;
+          color: #1d1d1d;
+          line-height: 24px;
+          margin: 0 6px 0 10px;
+        }
+        button{
+          padding: 8px 16px;
+          font-weight: 500;
+          &:first-child{
+            background-color: $gold;
+            color: white;
+            border: 1px solid $gold;
+          }
+          &:last-child{
+            background-color: white;
+            border: 1px solid $light-gray;
+          }
+        }
+      }
+      .order-totalsummary{
+        background-color: $light-gray;
+        
+      }
+      .order-total{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: 30px 0 40px;
+        button{
+          display: inline-block;
+          width: 160px;
+          padding: 12px 16px;
+          &.continue-shopping{
+            position: absolute;
+            right: 0;
+            background-color: white;
+            border: 1px solid $light-gray;
+          }
+        }
+        .btns{
+          button{
+            &:first-child{
+              background-color: black;
+              color: white;
+              margin-right: 10px;
+            }
+            &:last-child{
+              background-color: white;
+              border: 1px solid $light-gray;
+            }
+          }
+        }
+      }
+    }
+    .basketguide{
+      border: 1px solid #ddd;
+      h3{
+        font-size: 13px;
+        color: #1d1d1d;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        background: #fafafa;
+      }
+      .guide-inner{
+        padding: 0 9px 12px;
+        h4{
+          margin: 20px 0 -4px;
+          color: #1d1d1d;
+          font-size: 12px;
+          font-weight: normal;
+        }
+        ul{
+          margin: 15px 0 0 11px;
+          li{
+            font-size: 13px;
+            line-height: 1.4;
+            padding: 0 0 0 25px;
+            background: url('../../../public/images/ico_number.png') no-repeat;
+            &:first-child{
+              background-position: -484px 0;
+            }
+            &:nth-child(2){
+              background-position: -434px -100px;
+            }
+            &:nth-child(3){
+              background-position: -384px -200px;
+            }
+            &:nth-child(4){
+              background-position: -334px -300px;
+            }
+            &:nth-child(5){
+              background-position: -284px -400px;
+            }
+            &:nth-child(6){
+              background-position: -234px -500px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

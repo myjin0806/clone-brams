@@ -1,0 +1,125 @@
+@import '../common/variables.scss';
+
+.header-wrap{
+  position: relative;
+  header{
+    z-index: 100;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 72px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease, transform 0.3s ease;
+    .header-inner{
+      height: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: .3s ease;
+      .flex{
+        display: flex;
+        .header-logo{
+          margin-right: 65px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .header-nav{
+          ul{
+            display: flex;
+            gap: 65px;
+            li{
+              position: relative;
+              line-height: 70px;
+              a{
+                color: white;
+                display: block;
+                height: 100%;
+              }
+              &::after{
+                position: absolute;
+                content: '';
+                width: 0%;
+                height: 2px;
+                background-color: $gold;
+                top: 70%;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: .3s;
+              }
+              &:hover::after{
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+      .header-icons{
+        display: flex;
+        .close_icon{
+          display: none;
+        }
+        li{
+          img{
+            margin-right: 20px;
+          }
+          &:last-child{
+            img{
+              margin-right: 0;
+            }
+          }
+        }
+      }
+  
+    }
+    &.hidden{
+      transform: translateY(-100%);
+    }
+    &.white{
+      backdrop-filter: blur(0px);
+      background-color: white;
+      .header-inner{
+        .flex{
+          .header-nav{
+            ul{
+              li{
+                a{
+                  color: $dim-black;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .submenu{
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 999;
+    &.active{
+      display: block;
+    }
+    .submenu-inner{
+      padding-left: 192px;
+      ul{
+        li{
+          padding: 10px 0;
+          a{
+            &:hover{
+              color: $gold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

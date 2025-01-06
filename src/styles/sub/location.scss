@@ -1,0 +1,52 @@
+@import '../common/variables.scss';
+
+.location{
+  margin-bottom: 200px;
+  h2{
+    font-size: 80px;
+    font-family: $primary-en;
+    font-weight: 300;
+    margin-bottom: 40px;
+    padding-left: 46.875%;
+  }
+  .location-wrap{
+    height: 600px;
+    display: flex;
+    justify-content: space-between;
+    ul{
+      height: inherit;
+      li{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        height: 25%;
+        &:last-child::after{
+          display: none;
+        }
+        &::after{
+          content: '';
+          position: absolute;
+          width: 50px;
+          height: 1px;
+          background-color: $light-black;
+          bottom: 0;
+          left: 0;
+        }
+        h3{
+          margin: 12px 0;
+          font-size: 20px;
+          font-weight: 500;
+        }
+        p{
+          font-size: 18px;
+          color: $light-black;
+        }
+      }
+    }
+    .map{
+      width: 850px;
+      border: 1px solid black;
+    }
+  }
+}

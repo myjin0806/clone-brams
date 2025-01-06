@@ -1,0 +1,66 @@
+@import '../common/variables.scss';
+
+.products{
+  margin-top: 180px;
+  .tab-menu{
+    margin-bottom: 64px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    color: $dark-gray;
+    div{
+      position: relative;
+      &.active{
+        color: $gold;
+      }
+    }
+  }
+  .items-count{
+    padding: 24px 0;
+    border-bottom: 1px solid $silver-gray;
+    margin-bottom: 40px;
+  }
+  .tab-item-list{
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 24px;
+  }
+  @at-root .pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 100px 0;
+    .page-item{
+      margin: 0 5px;
+      display: block;
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      font-size: 16px;
+      font-weight: 500;
+      color: #555;
+      line-height: 40px;
+      text-align: center;
+      &.active{
+        background: #D8B961;
+        border-radius: 50%;
+        font-weight: 700;
+        color: #fff;
+      }
+    }
+    button{
+      padding: 8px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: transparent;
+      &:disabled{
+        cursor: not-allowed;
+      }
+    }
+  }
+}

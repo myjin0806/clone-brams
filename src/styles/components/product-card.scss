@@ -1,0 +1,78 @@
+@import '../common/variables.scss';
+
+.product-card{
+  width: 100%;
+  height: fit-content;
+  .product-image{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 100%;
+    .image-container{
+      position: relative;
+      .image{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        transition: opacity 0.5s ease-in-out;
+          &.image-first{
+            opacity: 1;
+          }
+          &.image-last{
+            opacity: 0; 
+          }
+        }
+      &:hover {
+        .image-first {
+          opacity: 0; // 첫 번째 이미지는 호버 시 숨김
+        }
+        .image-last {
+          opacity: 1; // 마지막 이미지는 호버 시 보임
+        }
+      }
+    }
+  }
+  .product-desc{
+    margin-top: 20px;
+    .product-title{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      h2{
+        font-size: 16px;
+        font-weight: normal;
+      }
+      .icon{
+        color: $silver-black  ;
+        transition: .3s;
+        &.active{
+          color: crimson;
+        }
+      }
+    }
+    p{
+      color: $silver-black;
+      font-size: 14px;
+      max-width: 85%;
+      display: -webkit-box;
+      overflow: hidden; 
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1; 
+      -webkit-box-orient: vertical; 
+      margin-bottom: 20px;
+    }
+    h3{
+      font-size: 16px;
+      font-weight: normal;
+    }
+    .btn-wraps{
+      margin-top: 6px;
+      img{
+        height: 22px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
