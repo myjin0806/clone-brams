@@ -23,8 +23,6 @@ const ProductCard = ({ product }) => {
 
   const displayedImage = images && images.length > 0 ? images[imageIndex] : 'default-image.jpg';
 
-  const imageSrc = `/images/${displayedImage}`;
-
   const formattedPrice = price ? price.toLocaleString() : '가격 미제공';
 
   return (

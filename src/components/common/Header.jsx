@@ -99,7 +99,7 @@ const Header = () => {
   return (
     <div className='header-wrap'>
       {isMainPage ? (
-        <header   className={`${isScrolling || window.scrollY > 1 || isHover || isHoveringSubMenu ? 'white' : ''} ${scrollingDown ? 'hidden' : ''}`}
+        <header   className={`${isScrolling || isWhiteHeader || window.scrollY > 1 || isHover || isHoveringSubMenu ? 'white' : ''} ${scrollingDown ? 'hidden' : ''}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         >

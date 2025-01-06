@@ -1,5 +1,5 @@
-import React, { useState, useEffect , useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Products from '../data/Products.json';
 /* icon */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,8 +23,6 @@ const ProductDetailPage = ({addToCart}) => {
   const toggleAccordion1 = () => setIsOpen1(prevState => !prevState);
   const toggleAccordion2 = () => setIsOpen2(prevState => !prevState);
   const toggleAccordion3 = () => setIsOpen3(prevState => !prevState);
-
-  const navigate = useNavigate();
 
   // 상품 데이터 불러오기
 
@@ -174,7 +172,7 @@ const [totalPrice, setTotalPrice] = useState(0);
     return <p>상품을 찾을 수 없습니다.</p>;
   }
 
-  const { name, images, description, price, isBest, isSale, isNew, detail, color } = product;
+  const { name, images, description, price, isBest, isSale, isNew, detail } = product;
 
   // 컬러 선택 핸들러
   const handleColorChange = (event) => {
