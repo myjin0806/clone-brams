@@ -21,8 +21,6 @@ const ProductCard = ({ product }) => {
     setImageIndex(0); // 첫 번째 이미지로 변경
   };
 
-  const displayedImage = images && images.length > 0 ? images[imageIndex] : 'default-image.jpg';
-
   const formattedPrice = price ? price.toLocaleString() : '가격 미제공';
 
   return (

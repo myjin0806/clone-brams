@@ -107,7 +107,7 @@ const ProductDetailPage = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll); // 언마운트 시 이벤트 제거
     };
-  }, [prevScrollPos]);
+  }, [handleScroll]);
 
   // 카피
   const handleCopy = (text) => {

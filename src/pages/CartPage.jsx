@@ -71,14 +71,11 @@ const CartPage = () => {
     setQuantities(cart.map((item) => item.quantity || 1));
   }, [cart]);
 
-
-
-
   // 해외배송 장바구니 관련 로컬 스토리지 키
   const internationalCartKey = 'internationalCart';
 
   // 해외배송 장바구니 상태
-  const [internationalCart, setInternationalCart] = useState(() => {
+  const [internationalCart] = useState(() => {
     const storedCart = localStorage.getItem(internationalCartKey);
     return storedCart ? JSON.parse(storedCart) : [];
   });
