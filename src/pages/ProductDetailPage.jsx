@@ -1,40 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Products from '../data/Products.json';
+/* components */
+import ProductReview from '../components/sub/ProductReview';
+import ProductQna from '../components/sub/ProductQna';
+import ProductInfo from '../components/sub/ProductInfo';
+import { CartContext } from '../components/sub/CartContext';
 /* icon */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
-import { faShareNodes, faX } from '@fortawesome/free-solid-svg-icons'; 
+import { faShareNodes, faX } from '@fortawesome/free-solid-svg-icons';
 /* swiper */
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const ProductDetailPage = ({addToCart}) => {
+const ProductDetailPage = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  // 각 아코디언 항목
-  const [isOpen1, setIsOpen1] = useState(false);
-  const [isOpen2, setIsOpen2] = useState(false); 
-  const [isOpen3, setIsOpen3] = useState(false); 
+  const product = Products.find((item) => item.id === parseInt(productId, 10));
+  const { addToCart } = useContext(CartContext); // CartContext에서 addToCart 함수 가져오기
 
-  const toggleAccordion1 = () => setIsOpen1(prevState => !prevState);
-  const toggleAccordion2 = () => setIsOpen2(prevState => !prevState);
-  const toggleAccordion3 = () => setIsOpen3(prevState => !prevState);
-
-  // 상품 데이터 불러오기
-
-  useEffect(() => {
-    const fetchedProduct = Products.find(p => p.id === parseInt(productId));
-    setProduct(fetchedProduct);
-  }, [productId, Products]);
-  // 좋아요 기능
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(false); // 좋아요 기능
   const handleLike = () => setLiked(!liked);
+  const [scrollingDown, setScrollingDown] = useState(false); // 아래로 스크롤 체크
+  const [prevScrollPos, setPrevScrollPos] = useState(0); // 이전 스크롤 위치
+  const [activeSection, setActiveSection] = useState(''); // 현재 활성화된 섹션 ID
+  const [selectedColor, setSelectedColor] = useState(''); // 상품 추가
+  const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  // 리뷰 데이터
+  //리뷰 데이터
   const reviews = [
     { id: 1, title: '구매 후기입니다:) 만족합니다.', author: '케*****', date: '2024.09.25' },
     { id: 2, title: '정말 좋은 제품이에요.', author: '김****', date: '2024.10.01' },
@@ -82,10 +79,6 @@ const ProductDetailPage = ({addToCart}) => {
     }
   ];
 
-  const [scrollingDown, setScrollingDown] = useState(false); // 아래로 스크롤 체크
-  const [prevScrollPos, setPrevScrollPos] = useState(0); // 이전 스크롤 위치
-  const [activeSection, setActiveSection] = useState(''); // 현재 활성화된 섹션 ID
-
   // 스크롤 방향에 따른 내비게이션 top 변경
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset; // 현재 스크롤 위치
@@ -95,7 +88,6 @@ const ProductDetailPage = ({addToCart}) => {
     } else {
       setScrollingDown(false); // 위로 스크롤
     }
-
     setPrevScrollPos(currentScrollPos); // 이전 스크롤 위치 업데이트
 
     // 섹션 위치 확인하여 active 클래스 부여
@@ -112,34 +104,10 @@ const ProductDetailPage = ({addToCart}) => {
   // 스크롤 이벤트 리스너 추가
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-
     return () => {
       window.removeEventListener('scroll', handleScroll); // 언마운트 시 이벤트 제거
     };
   }, [prevScrollPos]);
-
-  // 페이지네이션
-  const itemsPerPage = 5;
-  const [currentReviewPage, setCurrentReviewPage] = useState(1);
-  const [currentQnaPage, setCurrentQnaPage] = useState(1);
-
-  const indexOfLastReview = currentReviewPage * itemsPerPage;
-  const indexOfFirstReview = indexOfLastReview - itemsPerPage;
-  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
-
-  const indexOfLastQna = currentQnaPage * itemsPerPage;
-  const indexOfFirstQna = indexOfLastQna - itemsPerPage;
-  const currentQnas = qnas.slice(indexOfFirstQna, indexOfLastQna);
-
-  const totalReviewPages = Math.ceil(reviews.length / itemsPerPage);
-  const totalQnaPages = Math.ceil(qnas.length / itemsPerPage);
-
-  const goToReviewPage = (page) => {
-    if (page >= 1 && page <= totalReviewPages) setCurrentReviewPage(page);
-  };
-  const goToQnaPage = (page) => {
-    if (page >= 1 && page <= totalQnaPages) setCurrentQnaPage(page);
-  };
 
   // 카피
   const handleCopy = (text) => {
@@ -152,12 +120,6 @@ const ProductDetailPage = ({addToCart}) => {
       });
   };
   const currentUrl = window.location.href;
-
-  // 상품 추가
-  const [selectedColor, setSelectedColor] = useState(product?.color[0] || '');
-  const [quantity, setQuantity] = useState(1);
-
-const [totalPrice, setTotalPrice] = useState(0);
 
   // 상품이 로드되었을 때만 가격 계산하도록 수정
   useEffect(() => {
@@ -172,13 +134,15 @@ const [totalPrice, setTotalPrice] = useState(0);
     return <p>상품을 찾을 수 없습니다.</p>;
   }
 
-  const { name, images, description, price, isBest, isSale, isNew, detail } = product;
+  const { name, images, description, price, isBest, isSale, isNew, detail, color: productColors } = product;
 
   // 컬러 선택 핸들러
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
+    setQuantity(1); // 컬러 변경 시 수량 1로 초기화
+    setTotalPrice(product.price); // 가격도 초기화
   };
-  
+
   // 수량 증가/감소 핸들러
   const increaseQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
@@ -188,10 +152,31 @@ const [totalPrice, setTotalPrice] = useState(0);
   };
 
   //선택 초기화 핸들러 
-  const resetSelection = () =>{
+  const resetSelection = () => {
     setSelectedColor("")
     setQuantity(1);
+    setTotalPrice(0);
   }
+// 구매하기 버튼 클릭 이벤트
+const handleBuyNow = () => {
+  if (productColors.length > 0 && !selectedColor) {
+    alert('옵션을 선택해주세요.');
+  } else {
+    alert('로그인 후 구매하실 수 있습니다.');
+  }
+};
+
+// 장바구니 담기 버튼 클릭 이벤트
+const handleAddToCart = () => {
+  if (productColors.length > 0 && !selectedColor) {
+    alert('옵션을 선택해주세요.');
+    return;
+  }
+  const colorToAddToCart = productColors.length > 0 ? selectedColor : '';
+
+  addToCart({ ...product, color: colorToAddToCart, quantity: quantity });
+  alert('장바구니에 상품이 추가되었습니다.');
+};
 
   return (
     <div className="product-detail inner">
@@ -217,7 +202,7 @@ const [totalPrice, setTotalPrice] = useState(0);
             ))}
           </Swiper>
         </div>
-        {/* 상세 정보 */}
+        {/* 네비게이션 */}
         <div className="product-additional">
           <nav className="product-nav"
             style={{
@@ -236,166 +221,11 @@ const [totalPrice, setTotalPrice] = useState(0);
             <img src={`/images/${detail}`} alt="" />
           </div>
           {/* 리뷰 */}
-          <div id="product-review" className="sec-02">
-            <table>
-              <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>작성자</th>
-                  <th>작성일</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentReviews.map((review) => (
-                  <tr key={review.id}>
-                    <td className="no">{review.id}</td>
-                    <td className="subject">{review.title}</td>
-                    <td className="writter">{review.author}</td>
-                    <td className="date">{review.date}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {/* btn */}
-            <div className="product-btn-wraps">
-              <div className="float">
-                <button className="white">전체보기</button>
-                <button className="black">상품후기쓰기</button>
-              </div>
-            </div>
-            {/* 페이지네이션 */}
-            <div className="pagination">
-              <button onClick={() => goToReviewPage(1)} disabled={currentReviewPage === 1}>
-                <img src="/images/ic_arr_pag_prev.svg" alt="가장 앞으로" />
-              </button>
-              <button onClick={() => goToReviewPage(currentReviewPage - 1)} disabled={currentReviewPage === 1}>
-                <img src="/images/ic_arr_pag_left.svg" alt="앞으로" />
-              </button>
-              {Array.from({ length: totalReviewPages }, (_, i) => (
-                <div
-                  key={i + 1}
-                  onClick={() => goToReviewPage(i + 1)}
-                  className={`page-item ${currentReviewPage === i + 1 ? 'active' : ''}`}
-                >
-                  {i + 1}
-                </div>
-              ))}
-              <button onClick={() => goToReviewPage(currentReviewPage + 1)} disabled={currentReviewPage === totalReviewPages}>
-                <img src="/images/ic_arr_pag_right.svg" alt="뒤로" />
-              </button>
-              <button onClick={() => goToReviewPage(totalReviewPages)} disabled={currentReviewPage === totalReviewPages}>
-                <img src="/images/ic_arr_pag_next.svg" alt="가장 뒤로" />
-              </button>
-            </div>
-          </div>
+          <ProductReview reviews={reviews} />
           {/* Q&A */}
-          <div id="product-qna" className="sec-03">
-            <table>
-              <thead>
-                <tr>
-                  <th>번호</th>
-                  <th>질문</th>
-                  <th>작성자</th>
-                  <th>작성일</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentQnas.map((qna) => (
-                  <tr key={qna.id}>
-                    <td className="no">{qna.id}</td>
-                    <td className="subject">{qna.question}</td>
-                    <td className="writter">{qna.writer}</td>
-                    <td className="date">{qna.date}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {/* btn */}
-            <div className="product-btn-wraps">
-              <div className="float">
-                <button className="white">전체보기</button>
-                <button className="black">상품문의쓰기</button>
-              </div>
-            </div>
-            {/* 페이지네이션 */}
-            <div className="pagination">
-              <button onClick={() => goToQnaPage(1)} disabled={currentQnaPage === 1}>
-                <img src="/images/ic_arr_pag_prev.svg" alt="가장 앞으로" />
-              </button>
-              <button onClick={() => goToQnaPage(currentQnaPage - 1)} disabled={currentQnaPage === 1}>
-                <img src="/images/ic_arr_pag_left.svg" alt="앞으로" />
-              </button>
-              {Array.from({ length: totalQnaPages }, (_, i) => (
-                <div
-                  key={i + 1}
-                  onClick={() => goToQnaPage(i + 1)}
-                  className={`page-item ${currentReviewPage === i + 1 ? 'active' : ''}`}
-                >
-                  {i + 1}
-                </div>
-              ))}
-              <button onClick={() => goToQnaPage(currentQnaPage + 1)} disabled={currentQnaPage === totalQnaPages}>
-                <img src="/images/ic_arr_pag_right.svg" alt="뒤로" />
-              </button>
-              <button onClick={() => goToQnaPage(totalQnaPages)} disabled={currentQnaPage === totalQnaPages}>
-                <img src="/images/ic_arr_pag_next.svg" alt="가장 뒤로" />
-              </button>
-            </div>
-          </div>
+          <ProductQna qnas={qnas} />
           {/* 구매정보 */}
-          <div id="product-info" className='sec-04'>
-            <div className={`accordion-item ${isOpen1 ? 'active' : ''}`}>
-              <div className="accordion-title" onClick={toggleAccordion1}>
-                <h2>결제안내</h2>
-              </div>
-              <div className="accordion-content" style={{ maxHeight: isOpen1 ? '150px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease, padding 0.3s ease, overflow 0.3s ease', padding: isOpen1 ? '24px 32px' : '0 32px'}}>
-                <p>
-                고액결제의 경우 안전을 위해 카드사에서 확인전화를 드릴 수도 있습니다. 확인과정에서 도난 카드의 사용이나 타인 명의의 주문등 정상적인 주문이 아니라고 판단될 경우 임의로 주문을 보류 또는 취소할 수 있습니다.<br/><br/>
-                무통장 입금은 상품 구매 대금은 PC뱅킹, 인터넷뱅킹, 텔레뱅킹 혹은 가까운 은행에서 직접 입금하시면 됩니다.  <br/>
-                주문시 입력한 입금자명과 실제입금자의 성명이 반드시 일치하여야 하며, 7일 이내로 입금을 하셔야 하며 입금되지 않은 주문은 자동취소 됩니다.
-                </p>
-              </div>
-            </div>
-            <div className={`accordion-item ${isOpen2 ? 'active' : ''}`}>
-              <div className="accordion-title" onClick={toggleAccordion2}>
-                <h2>배송안내</h2>
-              </div>
-              <div className="accordion-content" style={{ maxHeight: isOpen2 ? '200px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease, padding 0.3s ease, overflow 0.3s ease' , padding: isOpen2 ? '24px 32px' : '0 32px'}}>
-                <ul>
-                  <li>배송 방법 : 택배</li>
-                  <li>배송 지역 : 전국지역</li>
-                  <li>배송 비용 : 2,500원</li>
-                  <li>배송 기간 : 3일 ~ 7일</li>
-                  <li>배송 안내 : - 산간벽지나 도서지방은 별도의 추가금액을 지불하셔야 하는 경우가 있습니다.
-                  고객님께서 주문하신 상품은 입금 확인후 배송해 드립니다.<br/> 다만, 상품종류에 따라서 상품의 배송이 다소 지연될 수 있습니다.</li>
-                </ul>
-              </div>
-            </div>
-            <div className={`accordion-item ${isOpen3 ? 'active' : ''}`}>
-              <div className="accordion-title" onClick={toggleAccordion3}>
-                <h2>교환&반품 안내</h2>
-              </div>
-              <div className="accordion-content" style={{ maxHeight: isOpen3 ? '500px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease, padding 0.3s ease, overflow 0.3s ease', padding: isOpen3 ? '24px 32px' : '0 32px'}}>
-                <p>
-                  <b>교환 및 반품 주소</b>
-                  - <br/><br/>
-                  <b>교환 및 반품이 가능한 경우</b>
-                  - 계약내용에 관한 서면을 받은 날부터 7일. 단, 그 서면을 받은 때보다 재화등의 공급이 늦게 이루어진 경우에는 재화등을 공급받거나 재화등의 공급이 시작된 날부터 7일 이내<br/>
-                  - 공급받으신 상품 및 용역의 내용이 표시.광고 내용과 다르거나 계약내용과 다르게 이행된 때에는 당해 재화 등을 공급받은 날 부터 3월이내, 그사실을 알게 된 날 또는 알 수 있었던 날부터 30일이내<br/><br/>
-                  <b>교환 및 반품이 불가능한 경우</b>
-                  - 이용자에게 책임 있는 사유로 재화 등이 멸실 또는 훼손된 경우(다만, 재화 등의 내용을 확인하기 위하여 포장 등을 훼손한 경우에는 청약철회를 할 수 있습니다)<br/>
-                  - 이용자의 사용 또는 일부 소비에 의하여 재화 등의 가치가 현저히 감소한 경우<br/>
-                  - 시간의 경과에 의하여 재판매가 곤란할 정도로 재화등의 가치가 현저히 감소한 경우<br/>
-                  - 복제가 가능한 재화등의 포장을 훼손한 경우<br/>
-                  - 개별 주문 생산되는 재화 등 청약철회시 판매자에게 회복할 수 없는 피해가 예상되어 소비자의 사전 동의를 얻은 경우<br/>
-                  - 디지털 콘텐츠의 제공이 개시된 경우, (다만, 가분적 용역 또는 가분적 디지털콘텐츠로 구성된 계약의 경우 제공이 개시되지 아니한 부분은 청약철회를 할 수 있습니다.)<br/><br/>
-                  ※ 고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다.<br/>
-                  (색상 교환, 사이즈 교환 등 포함)
-                </p>
-              </div>
-            </div>
-          </div>
+          <ProductInfo />
         </div>
       </div>
       <div className="detail-right">
@@ -411,7 +241,7 @@ const [totalPrice, setTotalPrice] = useState(0);
           </div>
           <div className="price-btns-wrap">
             <div className="price">
-              {price}원
+              {price.toLocaleString()}원
             </div>
             <div className="btns">
               <button onClick={handleLike}>
@@ -427,8 +257,7 @@ const [totalPrice, setTotalPrice] = useState(0);
           </div>
         </div>
         <div className="product-option">
-          {product?.color && product.color.length > 0 ? (
-            // 컬러가 있을 경우: 컬러 선택 셀렉트 창만 보이고, 수량 증감 창은 보이지 않음
+          {productColors && productColors.length > 0 && (
             <div className='selected-color'>
               <select value={selectedColor} onChange={handleColorChange}>
                 <option value="">
@@ -440,44 +269,52 @@ const [totalPrice, setTotalPrice] = useState(0);
                 <option value="" disabled>
                   색상
                 </option>
-                {product.color.map((col, index) => (
+                {productColors.map((col, index) => (
                   <option key={index} value={col} className='select-color'>
                     {col}
                   </option>
                 ))}
               </select>
             </div>
+          )}
+          {/* 수량 및 가격 렌더링 로직 */}
+          {productColors.length > 0 ? (
+            // 컬러가 있는 경우: 컬러 선택 후에만 수량, 가격, x 아이콘 표시
+            selectedColor && (
+              <>
+                <div className='product-select'>
+                  <h3>{name}<span>- {selectedColor}</span></h3>
+                  <FontAwesomeIcon icon={faX} className='x-icon' onClick={resetSelection} />
+                  <div className='de-increase'>
+                    <button onClick={decreaseQuantity}>-</button>
+                    <span className='quantity'>{quantity}</span>
+                    <button onClick={increaseQuantity}>+</button>
+                  </div>
+                </div>
+                <div className='total-price'>
+                  <h3><span>총 상품 금액 </span><span>{totalPrice.toLocaleString()}원</span></h3>
+                </div>
+              </>
+            )
           ) : (
-            <div className='product-select'>
-              <h3>{name}</h3>
-              <div className='de-increase'>
-                <button onClick={decreaseQuantity}>-</button>
-                <span className='quantity'>{quantity}</span>
-                <button onClick={increaseQuantity}>+</button>
+            // 컬러가 없는 경우: 바로 수량, 가격 영역 표시
+            <>
+              <div className='product-select'>
+                <h3>{name}</h3>
+                <div className='de-increase'>
+                  <button onClick={decreaseQuantity}>-</button>
+                  <span className='quantity'>{quantity}</span>
+                  <button onClick={increaseQuantity}>+</button>
+                </div>
               </div>
-            </div>
-          )}
-          {/* 컬러 선택 후에만 수량 증감 창이 나옴 */}
-          {selectedColor && (
-            <div className='product-select'>
-              <h3>{name}<span>- {selectedColor}</span></h3>
-              <FontAwesomeIcon icon={faX} className='x-icon' onClick={resetSelection} />
-              <div className='de-increase'>
-                <button onClick={decreaseQuantity}>-</button>
-                <span className='quantity'>{quantity}</span>
-                <button onClick={increaseQuantity}>+</button>
+              <div className='total-price'>
+                <h3><span>총 상품 금액 </span><span>{totalPrice.toLocaleString()}원</span></h3>
               </div>
-            </div>
-          )}
-          {/* 총 가격 계산 */}
-          {selectedColor && (
-            <div className='total-price'>
-              <h3><span>총 상품 금액 </span><span>{totalPrice.toLocaleString()}원</span></h3>
-            </div>
+            </>
           )}
           <div className="cart-buy-btns">
-            <button className='add-to-cart'addToCart={addToCart}>ADD TO CART</button>
-            <button className='buy-now' addToCart={addToCart}>BUY NOW</button>
+            <button className='add-to-cart' onClick={handleAddToCart}>ADD TO CART</button>
+            <button className='buy-now' onClick={handleBuyNow}>BUY NOW</button>
           </div>
         </div>
         <div className="banner-wraps">

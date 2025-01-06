@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route  } from "react-router-dom";
 import { CartProvider } from './components/sub/CartContext';
 
@@ -17,7 +18,13 @@ import CartPage from './pages/CartPage';
 /* css */
 import './styles/index.scss';
 
-function App({addToCart}) {
+
+function App() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    setCart((prevCart) => [...prevCart, item]);
+  };
 
   return (
     <CartProvider>
@@ -30,7 +37,7 @@ function App({addToCart}) {
             <Route path="/products" element={<ProductsPage />}/>
             <Route path="/product/:productId" element={<ProductDetailPage addToCart={addToCart} />}/>
             <Route path="/login" element={<LoginPage />}/>
-            <Route path="/cart" element={<CartPage />} />
+            <Route path="/cart" element={<CartPage cart={cart} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

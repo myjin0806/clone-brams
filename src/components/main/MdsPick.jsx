@@ -40,11 +40,15 @@ const MdsPick = () => {
         })}
       </div>
       {/* 상품 리스트 */}
-      <div className="tab-item-list">
-        {filteredProducts.slice(0, visibleCount).map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      {filteredProducts.length > 0 ? (
+        <div className="tab-item-list">
+          {filteredProducts.slice(0, visibleCount).map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
       </div>
+      ):(
+        <div className="no-products">추천 상품이 없어요😥</div>
+      )}
     </section>
   );
 };

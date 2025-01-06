@@ -54,8 +54,22 @@
               word-break: break-all;
               word-wrap: break-word;
               text-align: center;
+              img.item-thumb{
+                width: 80px;
+                height: 80px;
+              }
               &.name{
                 text-align: left;
+                a{
+                  display: flex;
+                  align-items: center;
+                  .badges{
+                    img{
+                      height: 22px;
+                      margin-left: 4px;
+                    }
+                  }
+                }
               }
               &.amount{
                 input{
@@ -114,24 +128,67 @@
           color: #1d1d1d;
           line-height: 24px;
           margin: 0 6px 0 10px;
+          white-space: nowrap;
         }
-        button{
-          padding: 8px 16px;
-          font-weight: 500;
-          &:first-child{
-            background-color: $gold;
-            color: white;
-            border: 1px solid $gold;
-          }
-          &:last-child{
+        .order-selecter-btns{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          button{
+            padding: 8px 16px;
+            font-weight: 500;
             background-color: white;
             border: 1px solid $light-gray;
+            margin-right: 4px;
+          }
+          .left{
+            button{
+              &:first-child{
+                background-color: $gold;
+                color: white;
+                border: 1px solid $gold;
+              }
+            }
+          }
+          .right{
+            button{
+              &:last-child{
+                margin-right: 0px;
+              }
+            }
           }
         }
       }
       .order-totalsummary{
         background-color: $light-gray;
-        
+        ul{
+          padding: 40px 0;
+          display: flex;
+          justify-content: center;
+          li{
+            text-align: center;
+            font-size: 15px;
+            span{
+              margin-top: 10px;
+              display: block;
+              font-size: 24px;
+              font-weight: 600;
+            }
+            &.fee{
+              display: inline-block;
+              position: relative;
+              color: white;
+              text-align: center;
+              background-color: $gold;
+              width: 30px;
+              height: 30px;
+              line-height: 30px;
+              border-radius: 50%;
+              margin: 0 70px;
+              vertical-align: middle;
+            }
+          }
+        }
       }
       .order-total{
         position: relative;

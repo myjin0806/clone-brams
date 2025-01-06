@@ -1,41 +1,119 @@
-import React, { useContext, useState } from 'react'
-import Title from '../components/common/Title'
+import React, { useContext, useState, useEffect } from 'react';
+import Title from '../components/common/Title';
 import { CartContext } from '../components/sub/CartContext';
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
+import BasketGuide from '../components/sub/BasketGuide';
 
 const CartPage = () => {
-  const { cart, addToCart, removeFromCart } = useContext(CartContext); 
-  // 수량 상태 관리
-  const [quantities, setQuantities] = useState(cart.map(() => 1)); 
+  const { cart, removeFromCart, updateCartItemQuantity, clearCart } = useContext(CartContext);
+  const [selectAll, setSelectAll] = useState(false);   // 전체 선택 여부
+  const [selectedItems, setSelectedItems] = useState(cart.map(() => false));  // 개별 상품 선택 여부 (인덱스별)
+  const [quantities, setQuantities] = useState(cart.map((item) => item.quantity || 1));  // 수량 상태 관리 (인덱스별)
 
+  // 전체 선택/해제 핸들러
+  const handleSelectAll = (event) => {
+    setSelectAll(event.target.checked);
+    setSelectedItems(cart.map(() => event.target.checked)); // 모든 개별 상품 선택 여부를 전체 선택 여부와 동일하게 설정
+  };
+
+  // 개별 상품 선택 핸들러
+  const handleSelectItem = (index) => {
+    setSelectedItems((prevSelectedItems) => {
+      const newSelectedItems = [...prevSelectedItems];
+      newSelectedItems[index] = !newSelectedItems[index];
+      setSelectAll(newSelectedItems.every(item => item)); // 모든 상품이 선택되었는지 확인하여 selectAll 상태 업데이트
+      return newSelectedItems;
+    });
+  };
+
+  // 선택 상품 삭제 핸들러
+  const handleRemoveSelected = () => {
+    selectedItems.forEach((isSelected, index) => {
+      if (isSelected) {
+        removeFromCart(index); // 선택된 상품 장바구니에서 제거
+      }
+    });
+    setSelectedItems(cart.map(() => false)); // 선택 여부 초기화
+    setSelectAll(false); // 전체 선택 해제
+  };
+
+  // 장바구니 비우기 핸들러
+  const handleClearCart = () => {
+    if (window.confirm("장바구니를 비우시겠습니까?")) {
+      clearCart(); // CartContext의 clearCart 함수 호출
+      setSelectedItems(cart.map(() => false)); // 선택 여부 초기화
+      setSelectAll(false); // 전체 선택 해제
+    }
+  };
+
+  // 수량 변경 핸들러
   const handleQuantityChange = (index, amount) => {
+    const newQuantity = Math.max(1, quantities[index] + amount);
     setQuantities((prevQuantities) => {
       const newQuantities = [...prevQuantities];
-      newQuantities[index] = Math.max(1, newQuantities[index] + amount); // 최소 수량 1
+      newQuantities[index] = newQuantity;
       return newQuantities;
     });
+    updateCartItemQuantity(index, newQuantity); // CartContext에 수량 업데이트
   };
 
   const handleOrder = () => {
     alert('주문이 완료되었습니다.');
   };
 
+  // 총 상품 가격, 배송비, 최종 가격 계산
   const totalPrice = cart.reduce((sum, item, index) => sum + item.price * quantities[index], 0);
   const shippingFee = 0;
   const finalPrice = totalPrice + shippingFee;
 
+  // cart 상태가 변경될 때 quantities 상태 동기화
+  useEffect(() => {
+    setQuantities(cart.map((item) => item.quantity || 1));
+  }, [cart]);
+
+
+
+
+  // 해외배송 장바구니 관련 로컬 스토리지 키
+  const internationalCartKey = 'internationalCart';
+
+  // 해외배송 장바구니 상태
+  const [internationalCart, setInternationalCart] = useState(() => {
+    const storedCart = localStorage.getItem(internationalCartKey);
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  // 해외배송 장바구니 개수
+  const internationalCartCount = internationalCart.length;
+
+  // 해외배송 장바구니 상태가 변경될 때 로컬 스토리지 업데이트
+  useEffect(() => {
+    localStorage.setItem(internationalCartKey, JSON.stringify(internationalCart));
+  }, [internationalCart]);
+
+  // 선택 상품 이동 핸들러 (해외배송) - 수정
+  const handleMoveToInternationalCart = () => {
+    const selectedItemsData = cart.filter((_, index) => selectedItems[index]);
+    const selectedCount = selectedItemsData.length;
+
+    if (selectedCount === 0) {
+      alert('상품을 선택해주세요.');
+    } else {
+      alert('국내배송상품은 해외배송이 불가능합니다.');
+    }
+  };
+
   return (
     <div className='cart-page'>
       <div className="cart-inner inner">
-        <Title title="Cart" showLink={false}/>
+        <Title title="Cart" showLink={false} />
         <div className="order-wrap">
           <ul className="order-menu">
             <li className="active">
-              <a href="#none">국내배송상품()</a>
+              <a href="#none">국내배송상품({cart.length})</a>
             </li>
             <li>
-              <a href="#none">해외배송상품(0)</a>
+              <a href="#none">해외배송상품({internationalCartCount})</a>
             </li>
           </ul>
           <table className="order-table">
@@ -52,7 +130,7 @@ const CartPage = () => {
             </colgroup>
             <thead>
               <tr>
-                <th><input type="checkbox" /></th>
+                <th><input type="checkbox" checked={selectAll} onChange={handleSelectAll} /></th>
                 <th>이미지</th>
                 <th>상품정보</th>
                 <th>수량</th>
@@ -64,17 +142,34 @@ const CartPage = () => {
               </tr>
             </thead>
             <tbody>
-              {cart.map((item, index) => (
-                <tr key={item.id}>
-                  <td><input type="checkbox" /></td>
-                  <td className="thumb"><img src={item.image} alt={item.name} /></td>
-                  <td className="name">{item.name}</td>
+              {cart.length === 0 &&(
+                <tr>
+                  <td colSpan={9} className='empty-cart'>
+                    장바구니가 비었습니다.
+                  </td>
+                </tr>
+              )}
+              {cart.length > 0 && cart.map((item, index) => (
+                <tr key={index}>
+                  <td><input type="checkbox" checked={selectedItems[index]} onChange={() => handleSelectItem(index)} /></td>
+                  <td className="thumb"><Link to={`/product/${item.id}`}><img className='item-thumb' src={`/images/${item.images[0]}`} alt={item.name} /></Link>
+                  </td>
+                  <td className="name">
+                    <Link to={`/product/${item.id}`}>
+                      {item.name}
+                      <div className="badges">
+                        {item.isBest ? (<img src="/images/custom_best.png" alt="베스트 아이콘" />) : ''}
+                        {item.isSale ? (<img src="/images/custom_sale.png" alt="세일 아이콘" />) : ''}
+                        {item.isNew ? (<img src="/images/custom_best.png" alt="신제품 아이콘" />) : ''}
+                      </div>
+                    </Link>
+                  </td>
                   <td className="amount">
                     <button onClick={() => handleQuantityChange(index, -1)}>-</button>
                     <input type="text" value={quantities[index]} readOnly />
                     <button onClick={() => handleQuantityChange(index, 1)}>+</button>
                   </td>
-                  <td className="price">{item.price}</td>
+                  <td className="price">{(item.price * quantities[index]).toLocaleString()}원</td>
                   <td className="mileage">-</td>
                   <td className="delivery">기본배송</td>
                   <td className="delivery-fee">무료</td>
@@ -98,53 +193,41 @@ const CartPage = () => {
           <div className="order-selecter">
             <p>선택상품을</p>
             <div className="order-selecter-btns">
-              <button >X 삭제하기</button>
-              <button>해외배송상품 장바구니로 이동</button>
+              <div className="left">
+                <button onClick={handleRemoveSelected}>X 삭제하기</button>
+                <button onClick={handleMoveToInternationalCart}>해외배송상품 장바구니로 이동</button>
+              </div>
+              {cart.length > 0 &&(
+                <div className="right">
+                  <button onClick={handleClearCart}>장바구니 비우기</button>
+                  <button>견적서 출력</button>
+                </div>
+              )}
             </div>
           </div>
           <div className="order-totalsummary">
             <ul>
               <li>
-              총 상품금액: {totalPrice.toLocaleString()}원
+                총 상품금액<span>{totalPrice.toLocaleString()}원</span>
               </li>
-              <li>+</li>
-              <li>배송비: {shippingFee.toLocaleString()}원</li>
-              <li></li>
-              <li>합계: {finalPrice.toLocaleString()}</li>
+              <li className='fee'>+</li>
+              <li>총 배송비<span>{shippingFee.toLocaleString()}원</span></li>
+              <li className='fee'>=</li>
+              <li>합계<span>{finalPrice.toLocaleString()}원</span></li>
             </ul>
           </div>
           <div className="order-total">
             <div className="btns">
-            <button onClick={handleOrder}>선택상품 주문</button>
-            <button onClick={handleOrder}>전체상품 주문</button>
+              <button onClick={handleOrder}>선택상품 주문</button>
+              <button onClick={handleOrder}>전체상품 주문</button>
             </div>
             <button className='continue-shopping'><Link to="/products">쇼핑계속하기</Link></button>
           </div>
         </div>
-        <div className="basketguide">
-          <h3>이용안내</h3>
-          <div className="guide-inner">
-            <h4>장바구니 이용안내</h4>
-            <ul>
-              <li>선택하신 상품의 수량을 변경하시려면 수량변경 후 [변경] 버튼을 누르시면 됩니다.</li>
-              <li>[쇼핑계속하기] 버튼을 누르시면 쇼핑을 계속 하실 수 있습니다.</li>
-              <li>장바구니와 관심상품을 이용하여 원하시는 상품만 주문하거나 관심상품으로 등록하실 수 있습니다.</li>
-              <li>파일첨부 옵션은 동일상품을 장바구니에 추가할 경우 마지막에 업로드 한 파일로 교체됩니다.</li>
-              <li>해외배송 상품과 국내배송 상품은 함께 결제하실 수 없으니 장바구니 별로 따로 결제해 주시기 바랍니다.</li>
-              <li>해외배송 가능 상품의 경우 국내배송 장바구니에 담았다가 해외배송 장바구니로 이동하여 결제하실 수 있습니다.</li>
-            </ul>
-            <h4>무이자할부 이용안내</h4>
-            <ul>
-              <li>상품별 무이자할부 혜택을 받으시려면 무이자할부 상품만 선택하여 [주문하기] 버튼을 눌러 주문/결제 하시면 됩니다.</li>
-              <li>[전체 상품 주문] 버튼을 누르시면 장바구니의 구분없이 선택된 모든 상품에 대한 주문/결제가 이루어집니다.</li>
-              <li>단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수 없습니다.</li>
-              <li>무이자할부 상품은 장바구니에서 별도 무이자할부 상품 영역에 표시되어, 무이자할부 상품 기준으로 배송비가 표시됩니다.<br/>실제 배송비는 함께 주문하는 상품에 따라 적용되오니 주문서 하단의 배송비 정보를 참고해주시기 바랍니다.</li>
-            </ul>
-          </div>
-        </div>
+        <BasketGuide />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CartPage
+export default CartPage;
