@@ -25,7 +25,19 @@
 
 /* pages Style */
 @import './pages/products-page.scss';
+@import './pages/rental-page.scss';
 @import './pages/productdetail-page.scss';
+@import './pages/experience-stores.scss';
+
+@import './pages/brandstory-page.scss';
+@import './pages/certification-page.scss';
+
+@import './pages/announcements-page.scss';
+@import './pages/news-page.scss';
+@import './pages/manual-page.scss';
+@import './pages/withbrams-page.scss';
+
+@import './pages/reviews-page.scss';
 @import './pages/login-page.scss';
 @import './pages/cart-page.scss';
 
@@ -34,8 +46,11 @@
 @import './sub/works.scss';
 @import './sub/history.scss';
 @import './sub/location.scss';
+@import './sub/left-board.scss';
+@import './components/sub-title.scss'
 
-/* 
-  이거 넣기
-  @import '../variables.scss';
-*/
+// /* 
+
+//   이거 넣기
+//   @import '../common/variables.scss';
+// */

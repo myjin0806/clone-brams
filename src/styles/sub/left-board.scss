@@ -1,0 +1,30 @@
+@import '../common/variables.scss';
+
+.left-board{
+  width: 205px;
+  h2{
+    margin: 0 0 40px;
+    padding: 0 0 34px;
+    font-family: $primary-en;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.64px;
+    border-bottom: 1px solid $dark-black;
+  }
+  ul{
+    li{
+      padding: 2px 0;
+      list-style: none;
+      margin-bottom: 14px;
+      a{
+        color: $silver-black;
+        &.active{
+          color: $gold;
+        }
+      }
+      &:last-child{
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

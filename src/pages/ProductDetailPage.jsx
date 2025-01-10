@@ -34,11 +34,11 @@ const ProductDetailPage = () => {
   //리뷰 데이터
   const reviews = [
     { id: 1, title: '구매 후기입니다:) 만족합니다.', author: '케*****', date: '2024.09.25' },
-    { id: 2, title: '정말 좋은 제품이에요.', author: '김****', date: '2024.10.01' },
-    { id: 3, title: '배송이 빨라서 좋았어요.', author: '이****', date: '2024.10.03' },
-    { id: 4, title: '다음에 또 구매할게요!', author: '박****', date: '2024.10.05' },
-    { id: 5, title: '제품 품질이 아쉬워요.', author: '정****', date: '2024.10.07' },
-    { id: 6, title: '최고입니다!', author: '홍****', date: '2024.10.09' },
+    { id: 2, title: '정말 좋은 제품이에요.', author: '김**', date: '2024.10.01' },
+    { id: 3, title: '배송이 빨라서 좋았어요.', author: '이**', date: '2024.10.03' },
+    { id: 4, title: '다음에 또 구매할게요!', author: '박**', date: '2024.10.05' },
+    { id: 5, title: '제품 품질이 아쉬워요.', author: '정**', date: '2024.10.07' },
+    { id: 6, title: '최고입니다!', author: '홍**', date: '2024.10.09' },
   ];
   // Q&A 데이터
   const qnas = [
@@ -129,12 +129,17 @@ const ProductDetailPage = () => {
 
   // 상품이 로드되었을 때만 가격 계산하도록 수정
   useEffect(() => {
-    if (product && selectedColor) {
-      setTotalPrice(quantity * product.price); // 컬러를 선택했을 때만 totalPrice 계산
-    } else {
-      setTotalPrice(0); // 컬러가 선택되지 않으면 0원
+    if (product) {
+      if (selectedColor) {
+        // 컬러가 선택되었을 때만 price 계산
+        setTotalPrice(quantity * product.price);
+      } else {
+        // 컬러가 선택되지 않으면 기본 가격으로 설정
+        setTotalPrice(quantity * product.price);
+      }
     }
   }, [product, selectedColor, quantity]);
+  
   //상품이 로드되지않았을 때
   if (!product) {
     return <p>상품을 찾을 수 없습니다.</p>;

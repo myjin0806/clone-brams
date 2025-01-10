@@ -1,17 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useContext, createContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useCategory } from './CategoryContext';
 import { CartContext } from '../sub/CartContext';
 
 const Header = () => {
   const { getCartCount } = useContext(CartContext); // 장바구니 총 개수 가져오기
+  const { selectedCategory, setSelectedCategory } = useCategory();
   const location = useLocation();
+  const navigate = useNavigate();
+
   const [scrollingDown, setScrollingDown] = useState(false); // 스크롤 방향 상태
   const [lastScrollY, setLastScrollY] = useState(0); // 마지막 스크롤 위치
   const [isScrolling, setIsScrolling] = useState(false); // 스크롤 중 상태 (scroll 클래스 추가)
   const [isHover, setIsHover] = useState(false);
 
   // 메인 페이지 여부 확인
-  const isMainPage = location.pathname === '/';
+  const mainPaths = ['/', '/brandstory', '/certification'];
+  const isMainPage = mainPaths.includes(location.pathname);
   const [isWhiteHeader, setIsWhiteHeader] = useState(false);
   const [hoveredMenu, setHoveredMenu] = useState(null); // 현재 호버 중인 메뉴
   const [isHoveringSubMenu, setIsHoveringSubMenu] = useState(false); // 서브메뉴 호버 여부 상태 추가
@@ -68,35 +73,35 @@ const Header = () => {
     setIsHoveringSubMenu(false);
   };
 
-
-
   //서브메뉴 데이터
   const submenuData = {
     '전체상품': [
-      { name: '안마의자', link: '' },
-      { name: '등마사지기', link: '' },
-      { name: '다리마사지기', link: '' },
-      { name: '발마사지기', link: '' },
-      { name: '소형마사지기', link: '' },
-      { name: 'EMS마사지기', link: '' },
-      { name: '기타제품', link: '' },
-      { name: '소모품', link: '' }
+      { name: '안마의자', link: '/products?category=안마의자' },
+      { name: '등마사지기', link: '/products?category=등마사지기' },
+      { name: '다리마사지기', link: '/products?category=다리마사지기' },
+      { name: '발마사지기', link: '/products?category=발마사지기' },
+      { name: '소형마사지기', link: '/products?category=소형마사지기' },
+      { name: 'EMS마사지기', link: '/products?category=EMS마사지기' },
+      { name: '기타제품', link: '/products?category=기타제품' },
+      { name: '소모품', link: '/products?category=소모품' },
     ],
     '브랜드': [
       { name: '회사소개', link: '/about' },
-      { name: '브람스 스토리', link: '' },
-      { name: '인증서 및 수상', link: '' }
+      { name: '브람스 스토리', link: '/brandstory' },
+      { name: '인증서 및 수상', link: '/certification' },
     ],
     '고객서비스': [
-      { name: '공지사항', link: '' },
-      { name: '브람스 이벤트', link: '' },
-      { name: '메뉴얼다운로드', link: '' },
-      { name: '배송/AS', link: '' },
-      { name: '대리점/B2B 상담', link: '' },
-      { name: '보도자료', link: '' },
-      { name: 'WITH 브람스', link: '' },
-      { name: 'FAQ', link: '' }
+      { name: '공지사항', link: '/announcements' },
+      { name: '매뉴얼다운로드', link: '/manual' },
+      { name: '보도자료', link: '/news' },
+      { name: 'WITH 브람스', link: '/withbrams' },
+      { name: '고객리뷰', link: '/reviews' }
     ],
+  };
+  
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    navigate(`/products?category=${encodeURIComponent(category)}`);
   };
 
   return (
@@ -122,16 +127,10 @@ const Header = () => {
                     <Link to="/products">전체상품</Link>
                   </li>
                   <li>
-                    <Link to="">신상품</Link>
+                    <Link to="/rental">렌탈</Link>
                   </li>
                   <li>
-                    <Link to="">베스트</Link>
-                  </li>
-                  <li>
-                    <Link to="">렌탈</Link>
-                  </li>
-                  <li>
-                    <Link to="">체험매장</Link>
+                    <Link to="/experiencestores">체험매장</Link>
                   </li>
                   <li
                     onMouseEnter={() => handleMenuMouseEnter('브랜드')}
@@ -143,13 +142,10 @@ const Header = () => {
                     onMouseEnter={() => handleMenuMouseEnter('고객서비스')}
                     onMouseLeave={handleMenuMouseLeave}
                   >
-                    <Link to="">고객서비스</Link>
+                    <Link to="/announcements">고객서비스</Link>
                   </li>
                   <li>
-                    <Link to="">클린케어서비스</Link>
-                  </li>
-                  <li>
-                    <Link to="">고객리뷰</Link>
+                    <Link to="/product/999">클린케어서비스</Link>
                   </li>
                 </ul>
               </nav>
@@ -213,16 +209,10 @@ const Header = () => {
                     <Link to="/products">전체상품</Link>
                   </li>
                   <li>
-                    <Link to="">신상품</Link>
+                    <Link to="/rental">렌탈</Link>
                   </li>
                   <li>
-                    <Link to="">베스트</Link>
-                  </li>
-                  <li>
-                    <Link to="">렌탈</Link>
-                  </li>
-                  <li>
-                    <Link to="">체험매장</Link>
+                    <Link to="/experiencestores">체험매장</Link>
                   </li>
                   <li onMouseEnter={() => handleMenuMouseEnter('브랜드')}
                     onMouseLeave={handleMenuMouseLeave}>
@@ -230,13 +220,10 @@ const Header = () => {
                   </li>
                   <li onMouseEnter={() => handleMenuMouseEnter('고객서비스')}
                     onMouseLeave={handleMenuMouseLeave}>
-                    <Link to="">고객서비스</Link>
+                    <Link to="/announcements">고객서비스</Link>
                   </li>
                   <li>
-                    <Link to="">클린케어서비스</Link>
-                  </li>
-                  <li>
-                    <Link to="">고객리뷰</Link>
+                    <Link to="/product/999">클린케어서비스</Link>
                   </li>
                 </ul>
               </nav>

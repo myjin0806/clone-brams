@@ -39,7 +39,7 @@
         font-weight: normal;
       }
       .icon{
-        color: $silver-black  ;
+        color: $silver-black;
         transition: .3s;
         &.active{
           color: crimson;
@@ -47,7 +47,7 @@
       }
     }
     p{
-      color: $silver-black;
+      color: $dim-black;
       font-size: 14px;
       max-width: 85%;
       display: -webkit-box;

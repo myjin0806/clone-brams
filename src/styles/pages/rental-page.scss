@@ -1,0 +1,13 @@
+@import '../common/variables.scss';
+
+.rental{
+  margin: 170px 0;
+  .rental-inner{
+    .rental-img{
+      img{
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}

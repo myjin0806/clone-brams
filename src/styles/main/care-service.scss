@@ -45,9 +45,9 @@
           transition: .3s;
         }
         &:hover{
-          color: $dim-black;
+          color: $dim-gray;
           &::after{
-            background-color: $dim-black;
+            background-color: $dim-gray;
           }
         }
       }

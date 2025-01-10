@@ -8,22 +8,40 @@
     justify-content: center;
     gap: 40px;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
-    color: $dark-gray;
+    color: $light-black;
     div{
       position: relative;
       &.active{
         color: $gold;
+        &::after{
+          width: 100%;
+        }
+      }
+      &::after{
+        content: '';
+        display: block;
+        position: relative;
+        width: 0px;
+        height: 1px;
+        background-color: $gold;
+        transition: .3s;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &:hover::after{
+        display: block;
+        width: 100%;
       }
     }
   }
-  .items-count{
+  @at-root .items-count{
     padding: 24px 0;
     border-bottom: 1px solid $silver-gray;
     margin-bottom: 40px;
   }
-  .tab-item-list{
+  @at-root .tab-item-list{
     height: fit-content;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -33,7 +51,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0 100px 0;
+    margin: 40px 0 100px 0;
     .page-item{
       margin: 0 5px;
       display: block;

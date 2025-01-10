@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Title from '../components/common/Title';
 import ProductCard from '../components/common/ProductCard';
 import Products from '../data/Products.json';
 
 const ProductsPage = () => {
-  const [activeTab, setActiveTab] = useState(''); // 초기 상태 빈 문자열
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const queryCategory = queryParams.get('category'); // URL에서 카테고리 값 읽기
+  const [activeTab, setActiveTab] = useState(queryCategory || ''); // URL 기반 초기 상태 설정
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const itemsPerPage = 12; // 한 페이지에 보여줄 상품 개수
-  const categories = ["안마의자", "등마사지기", "다리마사지기", "소형마사지기", "EMS마사지기", "기타제품", "소모품"];
+  const categories = ["안마의자", "등마사지기", "다리마사지기", "발마사지기", "소형마사지기", "EMS마사지기", "기타제품", "소모품"];
 
-  // 필터링 로직 수정: activeTab이 빈 문자열이면 모든 제품을 표시
+  // 필터링 로직: activeTab이 빈 문자열이면 모든 제품을 표시
   const filteredProducts = activeTab
     ? Products.filter((product) => product.type === activeTab)
     : Products;
@@ -40,6 +44,19 @@ const ProductsPage = () => {
   const goToPrevPage = () => setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
   const goToNextPage = () => setCurrentPage(currentPage < pageNumbers.length ? currentPage + 1 : pageNumbers.length);
 
+  // 각 카테고리의 상품 개수 계산
+  const categoryCounts = categories.reduce((acc, category) => {
+    acc[category] = Products.filter(product => product.type === category).length;
+    return acc;
+  }, {});
+
+  // URL 쿼리 파라미터로 페이지 진입 시 activeTab 설정
+  useEffect(() => {
+    if (queryCategory) {
+      setActiveTab(queryCategory);
+    }
+  }, [queryCategory]);
+
   return (
     <div className="products inner">
       <Title title="Product" showlink={false} />
@@ -47,11 +64,11 @@ const ProductsPage = () => {
       <div className="tab-menu">
         {categories.map((category) => (
           <div
-            key={category} // key 추가
+            key={category}
             className={activeTab === category ? "active" : ""}
             onClick={() => handleTabClick(category)}
           >
-            {category}
+            {category} ({categoryCounts[category]})
           </div>
         ))}
       </div>

@@ -29,7 +29,7 @@
         .header-nav{
           ul{
             display: flex;
-            gap: 65px;
+            gap: 40px;
             li{
               position: relative;
               line-height: 70px;
@@ -69,6 +69,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            color: white;
           }
           &:last-child{
             img{
@@ -91,9 +92,16 @@
             ul{
               li{
                 a{
-                  color: $dim-black;
+                  color: $dark-black;
                 }
               }
+            }
+          }
+        }
+        .header-icons{
+          li{
+            .cart-count{
+              color: black;
             }
           }
         }
@@ -109,11 +117,12 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: none;
     z-index: 999;
+    min-height: 310px;
     &.active{
       display: block;
     }
     .submenu-inner{
-      padding-left: 192px;
+      padding: 30px 0 30px 192px;
       ul{
         li{
           padding: 10px 0;

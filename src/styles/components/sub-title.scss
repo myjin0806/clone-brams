@@ -1,0 +1,33 @@
+@import '../common/variables.scss';
+
+.sub-title{
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 40px;
+  padding: 0 0 35px;
+  border-bottom: 1px solid $dark-black;
+  box-sizing: border-box;
+  font-family: "Bona Nova","Pretendard";
+  h2{
+    font-size: 32px;
+    font-weight: normal;
+  }
+  .breadcrumb{
+    font-size: 14px;
+    position: absolute;
+    bottom: 17px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    color: $silver-black;
+    em{
+      margin: 0 8px;
+    }
+    span{
+      color: $dark-black;
+    }
+  }
+}

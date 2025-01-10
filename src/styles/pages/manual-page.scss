@@ -1,0 +1,13 @@
+@import '../common/variables.scss';
+
+.manual{
+  margin: 170px 0;
+  .manual-inner{
+    display: flex;
+    gap: 75px;
+    .right-content{
+      width: calc(100% - 280px);
+      
+    }
+  }
+}

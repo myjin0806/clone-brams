@@ -10,9 +10,10 @@
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    color: $dark-gray;
     div{
       position: relative;
+      color: $light-black;
+      font-weight: 400;
       &::after{
         content: '';
         position: absolute;
@@ -21,7 +22,7 @@
         right: -10px;
         top: 50%;
         transform: translateY(-50%);
-        background-color: $dark-gray;
+        background-color: $light-black;
       }
       &:last-child{
         &::after{
@@ -30,6 +31,7 @@
       }
       &.active{
         color: $gold;
+        text-decoration: underline;
       }
     }
   }

@@ -24,6 +24,7 @@
     margin-right: calc((100% - 1540px) / 2);
     ul{
       li{
+        font-weight: 200;
         display: flex;
         gap: 40px;
         line-height: 1.5;
@@ -34,7 +35,7 @@
         }
         p{
           font-size: 20px;
-          color: $dark-gray;
+          color: $dim-gray;
         }
       }
     }

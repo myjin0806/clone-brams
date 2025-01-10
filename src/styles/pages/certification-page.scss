@@ -1,0 +1,44 @@
+@import '../common/variables.scss';
+
+.certification{
+  .sub-visual{
+    background-image: url('../../../public/images/bn_cer_intro.jpg');
+    h3{
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 18px;
+    }
+  }
+  .certification-inner{
+    margin: 180px auto;
+    h2{
+      color: $gold;
+      margin: 0 0 64px;
+      font-family: $primary-en;
+      font-size: 40px;
+      font-weight: 400;
+      letter-spacing: -0.8px;
+    }
+    .certifications{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 64px 40px;
+    }
+    .view-more{
+      margin: 100px 0 0;
+      text-align: center;
+      button{
+        display: inline-block;
+        width: 280px;
+        height: 58px;
+        border: 1px solid $dim-gray;
+        box-sizing: border-box;
+        background: #fff;
+        font-family: $primary-en;
+        font-size: 16px;
+        letter-spacing: -0.32px;
+        line-height: 56px;
+      }
+    }
+  }
+}

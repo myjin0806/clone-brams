@@ -26,7 +26,7 @@
           top: 99%;
           height: 2px;
           .swiper-pagination-progressbar-fill{
-            background-color: #555;
+            background-color: $gray;
             transform: translate3d(0px, 0px, 0px) scaleX(0.666667) scaleY(1);
             transition-duration: 800ms;
           }
@@ -52,8 +52,8 @@
             a{
               display: block;
               width: 100%;
-              color: $dark-gray;
-              border-bottom: 1px solid $dark-gray;
+              color: $silver-black;
+              border-bottom: 1px solid $silver-black;
               &.active{
                 color: $gold;
                 border-color: $gold;
@@ -75,18 +75,18 @@
       }
       .sec-02, .sec-03{
         table{
-          border-top: 1px solid black;
+          border-top: 1px solid $dark-black;
           width: 100%;
           thead{
-            border-top: 1px solid #8E8E8E;
+            border-top: 1px solid $silver-black;
             tr{
               width: 100%;
               th{
                 height: 60px;
-                border-bottom: 1px solid #e4e4e4;
+                border-bottom: 1px solid $dim-gray;
                 font-size: 14px;
                 font-weight: 500;
-                color: #1d1d1d;
+                color: $dark-black;
                 vertical-align: middle;
               }
             }
@@ -96,11 +96,11 @@
             tr{
               td{
                 padding: 28px 0;
-                border-bottom: 1px solid #e4e4e4;
+                border-bottom: 1px solid $dim-gray;
                 font-family: "Pretendard", sans-serif;
                 font-size: 14px;
                 font-weight: 500;
-                color: #8E8E8E;
+                color: $silver-black;
                 vertical-align: middle;
                 word-break: break-all;
                 word-wrap: break-word;
@@ -127,7 +127,7 @@
               border-radius: 0;
               &.white{
                 background-color: white;
-                border: 1px solid black;
+                border: 1px solid $dim-gray;
                 margin-right: 6px;
               }
               &.black{
@@ -148,23 +148,23 @@
           }
           .accordion-title{
             padding: 20px 16px;
-            border-bottom: 1px solid rgb(228, 228, 228);
+            border-bottom: 1px solid $dim-gray;
             cursor: pointer;
             background: url('../../../public/images/m_ic_ft_arr_down.png') calc(100% - 16px) center / 16px no-repeat;
             h2{
               font-size: 16px;
               font-weight: 600;
-              color: rgb(85, 85, 85);
+              color: $gray;
               line-height: 1.5;
             }
           }
           .accordion-content{
-            background: rgb(250, 250, 250);
+            background: $cloudy-gray;
             transition: height 0.3s ease;
             p{
               font-size: 14px;
               font-weight: 400;
-              color: rgb(113, 113, 113);
+              color: $dim-black;
               line-height: 1.6;
               word-break: keep-all;
               b{
@@ -179,7 +179,7 @@
                 list-style: disc;
                 font-size: 14px;
                 font-weight: 400;
-                color: rgb(113, 113, 113);
+                color: $dim-black;
                 line-height: 1.6;
               }
             }
@@ -198,7 +198,7 @@
     .product-info{
       padding-bottom: 24px;
       margin-bottom: 24px;
-      border-bottom: 1px solid $dark-gray;
+      border-bottom: 1px solid $silver-gray;
       .product-badge{
         img{
           height: 22px;
@@ -215,7 +215,7 @@
         p{
           margin-top: 6px;
           font-size: 16px;
-          color: $light-black;
+          color: $silver-black;
         }
       }
       .price-btns-wrap{
@@ -245,10 +245,10 @@
           width: 100%;
           height: auto;
           padding: 16px 32px 16px 16px;
-          border: 1px solid $dark-gray;
+          border: 1px solid $silver-gray;
           font-size: 14px;
           font-weight: 400;
-          color: #8e8e8e;
+          color: $silver-black;
           line-height: 14px;
           appearance: none;
           background: url('../../../public/images/m_ic_ft_arr_down.png') calc(100% - 16px) center / 16px no-repeat;
@@ -263,8 +263,8 @@
         margin-top: 24px;
         background-color: $cloudy-gray;
         padding: 20px;
-        border-top: 1px solid $dark-gray;
-        border-bottom: 1px solid black;
+        border-top: 1px solid $dim-gray;
+        border-bottom: 1px solid $dark-black;
         position: relative;
         h3{
           display: block;
@@ -327,9 +327,10 @@
           height: 58px;
           width: 100%;
           font-family: $primary-en;
-          border: 1px solid black;
+          border: 1px solid $dim-gray;
           &:first-child{
             background-color: white;
+            color: $gray;
           }
           &:last-child{
             background-color: black;

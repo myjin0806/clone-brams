@@ -1,0 +1,29 @@
+@import '../common/variables.scss';
+
+.withbrams{
+  margin: 170px 0;
+  .withbrams-inner{
+    display: flex;
+    gap: 75px;
+    .right-content{
+      width: calc(100% - 280px);
+      .img-gallery{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        .gallery-item{
+          img{
+            width: 100%;
+            object-fit: cover;
+          }
+          h2{
+            margin-top: 14px;
+            font-weight: normal;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

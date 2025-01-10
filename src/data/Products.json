@@ -247,6 +247,234 @@
   "color":[],
   "detail":"detail_img.jpg"
   },
+  {"id":15,
+  "type":"소형마사지기",
+  "name": "림프건 BM-1600",
+  "description":"림프 순환을 촉진시켜 몸의 부기를 줄이고 피로를 풀어주는 고급 마사지기입니다.",
+  "price": 136900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "16.jpg",
+    "16.jpg",
+    "16.jpg",
+    "16.jpg"
+  ],
+  "color":[],
+  "detail":"detail_img.jpg"
+  },
+  {"id":16,
+  "type":"등마사지기",
+  "name": "힐링 백 쿠션 AB2311B",
+  "description":"피로한 하루를 마무리하는 데 이상적인 등 마사지 기기로, 부드럽고 섬세한 마사지 효과로 몸과 마음을 힐링하세요.",
+  "price": 598000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "17.jpg",
+    "17.jpg",
+    "17.jpg",
+    "17.jpg"
+  ],
+  "color":[],
+  "detail":"detail_17.jpg"
+  },
+  {"id":17,
+  "type":"등마사지기",
+  "name": "겟백숄더 리클라이너 체어",
+  "description":" 집이나 사무실에서 편안한 쉼을 즐기세요.",
+  "price": 598000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "18.jpg",
+    "18.jpg",
+    "18.jpg",
+    "18.jpg"
+  ],
+  "color":[],
+  "detail":"detail_18.gif"
+  },
+  {"id":18,
+  "type":"다리마사지기",
+  "name": "각선미 922S PINK EDITION",
+  "description":"화사한 핑크 색상으로 스타일리시함을 더한 이 제품은 집에서도 전문가의 마사지 효과를 경험할 수 있습니다.",
+  "price": 598000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "19.jpg",
+    "19.jpg",
+    "19.jpg",
+    "19.jpg"
+  ],
+  "color":[],
+  "detail":"detail_19.jpg"
+  },
+  {"id":19,
+  "type":"다리마사지기",
+  "name": "더블에어다리마사지기",
+  "description":"더블에어다리마사지기로 피로를 확실하게 날려보세요!",
+  "price": 298000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "20.png",
+    "20.png",
+    "20.png",
+    "20.png"
+  ],
+  "color":[],
+  "detail":"detail_20.jpg"
+  },
+  {"id":20,
+  "type":"다리마사지기",
+  "name": "뉴 다리애",
+  "description":"부드럽고 강력한 마사지 기능으로 하루의 피로가 쌓인 다리를 완벽하게 풀어줍니다. ",
+  "price": 498000,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "21.jpg",
+    "21.jpg",
+    "21.jpg",
+    "21.jpg"
+  ],
+  "color":[],
+  "detail":"detail_21.jpg"
+  },
+  {
+    "id": 21,
+    "type": "발마사지기",
+    "name": "발리523",
+    "description": "피로한 발을 편안하게 풀어주는 마사지기로, 다양한 마사지 모드로 맞춤형 편안함을 제공합니다.",
+    "price": 198000,
+    "isBest": true,
+    "isNew": false,
+    "isSale": false,
+    "images": [
+      "22.jpg",
+      "22.jpg",
+      "22.jpg",
+      "22.jpg"
+    ],
+    "color": [],
+    "detail": "detail_22.jpg"
+  },
+  {
+    "id": 22,
+    "type": "EMS마사지기",
+    "name": "조인트가드 손목 보호대 EMS트레이닝 BM-1100",
+    "description": "EMS 기술로 손목 근육과 관절을 편안하게 관리할 수 있는 스마트 보호대입니다.",
+    "price": 99000,
+    "isBest": false,
+    "isNew": false,
+    "isSale": false,
+    "images": [
+      "23.jpg",
+      "23.jpg",
+      "23.jpg",
+      "23.jpg"
+    ],
+    "color": [],
+    "detail": "detail_23.jpg"
+  },
+  {
+    "id": 23,
+    "type": "EMS마사지기",
+    "name": "조인트가드 허리 보호대 EMS트레이닝 BM-1300",
+    "description": "허리 건강을 위한 EMS 보호대로, 편리하고 효과적인 트레이닝이 가능합니다.",
+    "price": 169000,
+    "isBest": false,
+    "isNew": false,
+    "isSale": false,
+    "images": [
+      "24.jpg",
+      "24.jpg",
+      "24.jpg",
+      "24.jpg"
+    ],
+    "color": [],
+    "detail": "detail_23.jpg"
+  },
+  {
+    "id": 24,
+    "type": "EMS마사지기",
+    "name": "조인트가드 보호대 EMS트레이닝 3종SET",
+    "description": "손목, 허리, 무릎까지 케어할 수 있는 3종 세트로, 종합적인 EMS 관리를 제공합니다.",
+    "price": 259000,
+    "isBest": false,
+    "isNew": false,
+    "isSale": false,
+    "images": [
+      "25.png",
+      "25.png",
+      "25.png",
+      "25.png"
+    ],
+    "color": [],
+    "detail": "detail_23.jpg"
+  },
+  {
+    "id": 25,
+    "type": "기타제품",
+    "name": "매력있수 미니 가습기",
+    "description": "공기를 촉촉하게 만들어주는 귀여운 디자인의 미니 가습기입니다.",
+    "price": 58000,
+    "isBest": false,
+    "isNew": false,
+    "isSale": false,
+    "images": [
+      "26.jpg",
+      "26.jpg",
+      "27.jpg",
+      "27.jpg"
+    ],
+    "color": ["WHITE 흰색", "PINK 핑크"],
+    "detail": "detail_26.jpg"
+  },
+  {
+    "id": 26,
+    "type": "기타제품",
+    "name": "참숯황토온열찜질기",
+    "description": "참숯과 황토의 온열 효과로 몸의 피로를 풀어주는 찜질기입니다.",
+    "price": 59800,
+    "isBest": false,
+    "isNew": false,
+    "isSale": false,
+    "images": [
+      "28.jpg",
+      "28.jpg",
+      "29.jpg",
+      "29.jpg"
+    ],
+    "color": ["RED 빨강", "BLUE 파랑"],
+    "detail": "detail_28.jpg"
+  },
+  {
+    "id": 27,
+    "type": "기타제품",
+    "name": "리클라이닝 체어",
+    "description": "편안한 휴식을 위한 리클라이닝 기능을 갖춘 다목적 의자입니다.",
+    "price": 99000,
+    "isBest": false,
+    "isNew": false,
+    "isSale": false,
+    "images": [
+      "30.jpg",
+      "30.jpg",
+      "30.jpg",
+      "30.jpg"
+    ],
+    "color": ["RED 빨강", "BLUE 파랑"],
+    "detail": "detail_30.jpg"
+  },
   {"id":101,
   "type":"렌탈",
   "name": "[렌탈]안마의자 골든이글 (BRAMS-S8800)",
@@ -389,7 +617,7 @@
   {"id":109,
   "type":"렌탈",
   "name": "[렌탈]안마의자 골든이글 라인",
-  "description":"골든이글 라인의 렌탈서비스입니다",
+  "description":"골든이글 라인의 렌탈서비스입니다.",
   "price": 120000,
   "isBest":false,
   "isNew":false,
@@ -402,5 +630,22 @@
   ],
   "color":[],
   "detail":"detail_img.jpg"
+  },
+  {"id":999,
+  "type":"소모품",
+  "name": "클린케어 서비스",
+  "description":"브람스 안마의자의 클린케어 서비스입니다.",
+  "price": 99900,
+  "isBest":false,
+  "isNew":false,
+  "isSale":false,
+  "images":[
+    "clean_01.jpg",
+    "clean_02.jpg",
+    "clean_03.jpg",
+    "clean_04.jpg"
+  ],
+  "color":[],
+  "detail":"clean_detail.jpg"
   }
 ]

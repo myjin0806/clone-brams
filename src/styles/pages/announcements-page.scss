@@ -1,0 +1,64 @@
+@import '../common/variables.scss';
+
+.announcements{
+  margin: 170px 0;
+  .announcements-inner{
+    display: flex;
+    gap: 75px;
+    .right-content{
+      width: calc(100% - 280px);
+      .search-wrap{
+        margin: 0 0 32px;
+        padding: 24px 32px;
+        background: $silver-gray;
+        display: flex;
+        justify-content: space-between;
+      }
+      @at-root .sub-table{
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid $dim-gray;
+        thead{
+          tr{
+            th{
+              height: 60px;
+              border-bottom: 1px solid #e4e4e4;
+              font-size: 14px;
+              vertical-align: middle;
+            }
+          }
+        }
+        tbody{
+          tr{
+            td{
+              padding: 28px 0;
+              border-bottom: 1px solid $dim-gray;
+              vertical-align: middle;
+              word-break: break-all;
+              word-wrap: break-word;
+              &.number{
+                color: $gold;
+                width: 100px;
+              }
+              &.subject{
+                padding: 28px 24px;
+                text-align: left;
+                img{
+                  width: 15px;
+                  height: 15px;
+                  object-fit: cover;
+                }
+              }
+              &.author{
+                width: 180px;
+              }
+              &.date{
+                width: 140px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

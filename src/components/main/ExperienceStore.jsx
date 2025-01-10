@@ -10,7 +10,7 @@ import 'swiper/css/scrollbar';
 const ExperienceStore = () => {
   return (
     <section className='experience-store inner'>
-      <Title title="Experience Store" showLink={true} linkTo=""/>
+      <Title title="Experience Store" showLink={true} linkTo="/experiencestores"/>
       <Swiper
         modules={[ Scrollbar ]}
         spaceBetween={40}
