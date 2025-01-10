@@ -13,7 +13,17 @@ const Location = () => {
       };
 
       // 카카오맵 객체가 정상적으로 로드되었으면 지도 생성
-      new kakao.maps.Map(container, options);
+      const map = new kakao.maps.Map(container, options);
+
+      var markerPosition  = new kakao.maps.LatLng(37.349370, 127.229967); 
+
+      var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
     } else {
       console.error('카카오맵 API가 로드되지 않았습니다.');
     }
