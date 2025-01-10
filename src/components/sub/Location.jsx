@@ -8,7 +8,7 @@ const Location = () => {
         center: new window.kakao.maps.LatLng(37.349370, 127.229967),
         level: 3,
       };
-      const map = new window.kakao.maps.Map(container, options);
+      new window.kakao.maps.Map(container, options);
     } else {
       console.error("카카오맵 API가 로드되지 않았습니다.");
     }
