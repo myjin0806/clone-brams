@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCategory } from './CategoryContext';
+import { Link, useLocation } from 'react-router-dom';
 import { CartContext } from '../sub/CartContext';
 
 const Header = () => {
   const { getCartCount } = useContext(CartContext); // 장바구니 총 개수 가져오기
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [scrollingDown, setScrollingDown] = useState(false); // 스크롤 방향 상태
   const [lastScrollY, setLastScrollY] = useState(0); // 마지막 스크롤 위치
