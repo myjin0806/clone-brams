@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCategory } from './CategoryContext';
 import { CartContext } from '../sub/CartContext';
 
 const Header = () => {
   const { getCartCount } = useContext(CartContext); // 장바구니 총 개수 가져오기
-  const { selectedCategory, setSelectedCategory } = useCategory();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -97,11 +96,6 @@ const Header = () => {
       { name: 'WITH 브람스', link: '/withbrams' },
       { name: '고객리뷰', link: '/reviews' }
     ],
-  };
-  
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    navigate(`/products?category=${encodeURIComponent(category)}`);
   };
 
   return (
