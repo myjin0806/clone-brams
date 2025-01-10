@@ -2,6 +2,7 @@ import { useState } from "react"
 import { BrowserRouter, Routes, Route  } from "react-router-dom"
 import { CartProvider } from './components/sub/CartContext'
 import { CategoryProvider } from './components/common/CategoryContext';
+import ScrollToTop from "./components/common/ScrollToTop.jsx";
 
 /* components */
 import Header from "./components/common/Header"
@@ -42,6 +43,7 @@ function App() {
       <CategoryProvider>
         <BrowserRouter>
           <Header />
+          <ScrollToTop /> 
           <div className="content">
             <Routes>
               <Route path="/" element={<HomePage />}/>
