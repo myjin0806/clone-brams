@@ -2,28 +2,20 @@ import React, { useEffect } from 'react';
 
 const Location = () => {
   useEffect(() => {
-    // 카카오맵 API 스크립트 로드 확인
-    if (!window.kakao) {
-      const script = document.createElement('script');
-      script.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=4e7aaf58f204e63b2c7429a70e212b71";
-      document.body.appendChild(script);
-
-      script.onload = () => {
-        const container = document.getElementById('map');
-        const options = {
-          center: new kakao.maps.LatLng(37.349370, 127.229967),
-          level: 3,
-        };
-        const map = new kakao.maps.Map(container, options);
-      };
-    } else {
-      // 이미 로드된 경우 바로 맵 생성
+    // 카카오맵 API가 로드된 후 실행
+    if (window.kakao) {
+      const { kakao } = window;
+      
       const container = document.getElementById('map');
       const options = {
         center: new kakao.maps.LatLng(37.349370, 127.229967),
         level: 3,
       };
-      const map = new kakao.maps.Map(container, options);
+
+      // 카카오맵 객체가 정상적으로 로드되었으면 지도 생성
+      new kakao.maps.Map(container, options);
+    } else {
+      console.error('카카오맵 API가 로드되지 않았습니다.');
     }
   }, []);
 
