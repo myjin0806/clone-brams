@@ -9,7 +9,7 @@ const Location = () => {
         center: new window.kakao.maps.LatLng(37.349370, 127.229967),
         level: 3
       };
-      var map = new window.kakao.maps.Map(container, options);
+      new window.kakao.maps.Map(container, options);  // map 변수 없이 바로 맵 생성
     } else {
       console.error('카카오맵 스크립트가 로드되지 않았습니다.');
     }
