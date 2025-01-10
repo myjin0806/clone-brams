@@ -5,19 +5,19 @@ const MainButtons = () => {
   return (
     <section className='main-buttons inner'>
       <div className='main-button'>
-        <Link to="">
+        <Link to="/products?category=안마의자">
           <img src="images/main_btns_01.jpg" alt="안마의자" />
           <p>안마의자</p>
         </Link>
       </div>
       <div className='main-button'>
-        <Link to="">
+        <Link to="/rental">
           <img src="images/main_btns_02.png" alt="렌탈서비스" />
           <p>렌탈서비스</p>
         </Link>
       </div>
       <div className='main-button'>
-        <Link to="">
+        <Link to="/experiencestores">
           <img src="images/main_btns_03.jpg" alt="체험매장" />
           <p>체험매장</p>
         </Link>
@@ -29,7 +29,7 @@ const MainButtons = () => {
         </Link>
       </div>
       <div className='main-button'>
-        <Link to="">
+        <Link to="/manual">
           <img src="images/main_btns_05.png" alt="매뉴얼" />
           <p>매뉴얼</p>
         </Link>
@@ -41,7 +41,7 @@ const MainButtons = () => {
         </Link>
       </div>
       <div className='main-button'>
-        <Link to="">
+        <Link to="/product/:999">
           <img src="images/main_btns_07.png" alt="클린케어서비스" />
           <p>클린케어서비스</p>
         </Link>
