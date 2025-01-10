@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 
 const Location = () => {
+  useEffect(() => {
+    // 카카오맵 스크립트가 로드되었는지 확인
+    if (window.kakao) {
+      var container = document.getElementById('map');
+      var options = {
+        center: new window.kakao.maps.LatLng(37.349370, 127.229967),
+        level: 3
+      };
+      var map = new window.kakao.maps.Map(container, options);
+    } else {
+      console.error('카카오맵 스크립트가 로드되지 않았습니다.');
+    }
+  }, []); // 빈 배열을 넣어서 컴포넌트가 처음 마운트될 때만 실행되도록 설정
+
   return (
-    <section className='location inner'>
+    <section className="location inner">
       <h2>Location</h2>
       <div className="location-wrap">
         <ul>
@@ -23,12 +37,10 @@ const Location = () => {
             <p>brams@ebrams.co.kr</p>
           </li>
         </ul>
-        <div className="map">
-          MAP
-        </div>
+        <div className="map" id="map"></div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Location
+export default Location;
